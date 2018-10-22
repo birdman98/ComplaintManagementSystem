@@ -4,6 +4,8 @@
 #include <string>
 #include <iostream>
 
+int Interface::choice = 0;
+
 
 Interface::Interface()
 {
