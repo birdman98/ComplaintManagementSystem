@@ -19,9 +19,33 @@ ListOfComplaints::ListOfComplaints(Complaint complaint_) {
 
 bool ListOfComplaints::deleteComplaint(const std::string &complaintToDelete) {
 
-	std::cout<<"Funkcjonalnosc w trakcie budowy\n\n";
+	Complaint* current = head;
+	Complaint* prev = nullptr;
+	Complaint* next = nullptr;
 
-	return false;
+
+	while ((current->getComplaintName() != complaintToDelete) && (current != nullptr)) {
+
+		current = current->getNext();
+	}
+
+	if (current == nullptr) {
+
+		std::cout << "Nie znaleziono podanej reklamacji!\n\n";
+
+		return false;
+	}
+
+	prev = current->getPrev(); //jeszcze siê zabezpieczyæ jak bd mia³ tylko jeden element na liœcie, prev bd nullptr i next te¿
+	next = current->getNext();
+
+	prev->setNext(next);
+	next->setPrev(prev);
+
+	delete current;
+
+
+	return true;
 }
 
 bool ListOfComplaints::addComplaint(Complaint &complaintToAdd) {
