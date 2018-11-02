@@ -2,7 +2,6 @@
 #include "ListOfComplaints.h"
 #include <iostream>
 
-
 ListOfComplaints::ListOfComplaints() :
 
 	head(nullptr),
@@ -41,6 +40,7 @@ bool ListOfComplaints::deleteComplaint(const std::string &complaintToDelete) {
 		delete current;
 
 		head = nullptr;
+		top = nullptr;
 
 		return true;
 	}
@@ -52,6 +52,8 @@ bool ListOfComplaints::deleteComplaint(const std::string &complaintToDelete) {
 	next->setPrev(prev);
 
 	delete current;
+
+	std::cout << "\nUsunieto reklamacje o tytule " << complaintToDelete << "\n\n";
 
 	return true;
 }
@@ -86,9 +88,23 @@ bool ListOfComplaints::addComplaint(Complaint &complaintToAdd) {
 
 Complaint ListOfComplaints::findComplaint(const std::string &complaintToFind) {
 
-	std::cout << "Funkcjonalnosc w trakcie budowy\n\n";
+	Complaint* current = head;
 
-	return Complaint();
+	while((current != nullptr) && (current->getComplaintName() != complaintToFind)) {
+
+		current = current->getNext();		
+	}
+
+	if(current==nullptr) {
+
+		std::cout << "\nReklamacja " << complaintToFind << " nie istnieje!\n\n";
+
+		return Complaint();
+		
+	}
+	
+
+	return *current;
 }
 
 void ListOfComplaints::sortComplaintsBy(const int &sortByChoice) {
