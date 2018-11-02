@@ -2,6 +2,12 @@
 #include "ListOfComplaints.h"
 #include <iostream>
 
+//TODO:
+//dodaæ wypisywanie wszystkich reklamacji, które nie zosta³y jeszcze rozpatrzone
+//przy starcie programu przypominaæ, ¿e siê koñczy czas na rozpatrzenie jakiejœ reklamacji
+//inicjalizacja pola daty aktualn¹ dat¹ systemow¹
+//przeci¹¿yæ operator wypisywania
+
 ListOfComplaints::ListOfComplaints() :
 
 	head(nullptr),
@@ -62,7 +68,7 @@ bool ListOfComplaints::addComplaint(Complaint &complaintToAdd) {
 
 	Complaint* toAdd = new Complaint(complaintToAdd); //konstruktor ustawia next i prev na nullptr
 
-	this->top = toAdd; //inicjalizacja pola daty aktualn¹ dat¹ systemow¹
+	this->top = toAdd; 
 
 	Complaint* current = head;
 
@@ -123,7 +129,7 @@ void ListOfComplaints::printComplaints() {
 
 	}
 
-	while (current != nullptr) { //przeci¹¿yæ operatory wypisywania
+	while (current != nullptr) { 
 
 		std::cout << current->getComplaintName() << "\n" << current->getComplaintedItem() << "\n\n";
 
