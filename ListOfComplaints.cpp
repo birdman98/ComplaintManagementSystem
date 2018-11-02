@@ -24,26 +24,34 @@ bool ListOfComplaints::deleteComplaint(const std::string &complaintToDelete) {
 	Complaint* next = nullptr;
 
 
-	while ((current->getComplaintName() != complaintToDelete) && (current != nullptr)) {
+	while ((current != nullptr) && (current->getComplaintName() != complaintToDelete)) {
 
 		current = current->getNext();
 	}
 
 	if (current == nullptr) {
 
-		std::cout << "Nie znaleziono podanej reklamacji!\n\n";
+		std::cout << "Podana reklamacja nie istnieje!\n\n";
 
 		return false;
 	}
 
-	prev = current->getPrev(); //jeszcze siê zabezpieczyæ jak bd mia³ tylko jeden element na liœcie, prev bd nullptr i next te¿
+	if(current == head) {
+
+		delete current;
+
+		head = nullptr;
+
+		return true;
+	}
+
+	prev = current->getPrev(); 
 	next = current->getNext();
 
 	prev->setNext(next);
 	next->setPrev(prev);
 
 	delete current;
-
 
 	return true;
 }
@@ -52,7 +60,7 @@ bool ListOfComplaints::addComplaint(Complaint &complaintToAdd) {
 
 	Complaint* toAdd = new Complaint(complaintToAdd); //konstruktor ustawia next i prev na nullptr
 
-	this->top = toAdd; 
+	this->top = toAdd; //inicjalizacja pola daty aktualn¹ dat¹ systemow¹
 
 	Complaint* current = head;
 
@@ -91,6 +99,13 @@ void ListOfComplaints::sortComplaintsBy(const int &sortByChoice) {
 void ListOfComplaints::printComplaints() {
 
 	Complaint* current = head;
+
+	if(current == nullptr) {
+
+		std::cout << "Lista reklamacji jest pusta!\n";
+		
+
+	}
 
 	while (current != nullptr) { //przeci¹¿yæ operatory wypisywania
 
