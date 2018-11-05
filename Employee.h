@@ -5,7 +5,7 @@ class Employee {
 
 	std::string name;
 	std::string surname;
-	//pole z ID (do RODO)
+	std::string employeesID; //protected?
 
 public:
 

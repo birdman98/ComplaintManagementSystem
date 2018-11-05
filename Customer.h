@@ -6,7 +6,7 @@ class Customer {
 
 	std::string name;
 	std::string surname;
-	//pole z ID klienta (RODO)
+	std::string customersID; //protected?
 
 public:
 	
