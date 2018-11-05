@@ -7,6 +7,7 @@
 //przy starcie programu przypominaæ, ¿e siê koñczy czas na rozpatrzenie jakiejœ reklamacji
 //inicjalizacja pola daty aktualn¹ dat¹ systemow¹
 //przeci¹¿yæ operator wypisywania
+//dodaæ metodê zwracaj¹c¹ iloœæ reklamacji oczekuj¹cych na rozpatrzenie w systemie i ew. zwi¹zane z tym pole statyczne
 
 ListOfComplaints::ListOfComplaints() :
 
@@ -92,7 +93,7 @@ bool ListOfComplaints::addComplaint(Complaint &complaintToAdd) {
 	return true;
 }
 
-Complaint ListOfComplaints::findComplaint(const std::string &complaintToFind) {
+Complaint ListOfComplaints::findComplaint(const std::string &complaintToFind) const {
 
 	Complaint* current = head;
 
@@ -113,12 +114,12 @@ Complaint ListOfComplaints::findComplaint(const std::string &complaintToFind) {
 	return *current;
 }
 
-void ListOfComplaints::sortComplaintsBy(const int &sortByChoice) {
+void ListOfComplaints::sortComplaintsBy(const int &sortByChoice) const {
 
 	std::cout << "Funkcjonalnosc w trakcie budowy\n\n";
 }
 
-void ListOfComplaints::printComplaints() {
+void ListOfComplaints::printComplaints() const {
 
 	Complaint* current = head;
 
@@ -138,7 +139,34 @@ void ListOfComplaints::printComplaints() {
 
 }
 
+void ListOfComplaints::printUnexaminedComplaints() const {
+
+	Complaint* current = this->head;
+
+	while(current != nullptr) {
+		
+		if((current->getStatus() == "zgloszone") || (current->getStatus() == "w toku")) {
+			
+			//std::cout << *current << "\n____________________________\n";
+		}
+
+		current = current->getNext();
+	}
+}
+
+
 ListOfComplaints::~ListOfComplaints() {
+
+	Complaint* toDelete = this->head;
+
+	while(toDelete != nullptr) {
+		
+		head = head->getNext();
+
+		delete toDelete;
+
+		toDelete = head;
+	}
 
 
 }
