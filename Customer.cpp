@@ -5,13 +5,16 @@
 Customer::Customer() :
 
 	name(""),
-	surname("") {
+	surname(""),
+    customersID("") {
 }
 
 Customer::Customer(const std::string &name_, const std::string &surname_) :
 
 	name(name_),
 	surname(surname_) {
+
+	//this->customersID = makeIDForUser();
 }
 
 void Customer::setName(const std::string &name) {
