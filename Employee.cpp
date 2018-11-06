@@ -36,4 +36,3 @@ std::string Employee::getSurname() const {
 
 	return this->surname;
 }
-
