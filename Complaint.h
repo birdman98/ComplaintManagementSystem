@@ -13,7 +13,7 @@ class Complaint {
 	Employee employeesData; //tak samo
 	std::string dateOfComplaint;
 	int duration; //czas miniony od podjêcia reklamacji, volatile??, czy to pole tu potrzebne czy lepiej metode, ktora na biezaco to wyliczy?
-	std::string status;
+	std::string status; //status wybierany z menu, nie wpisywany z palca!
 
 	Complaint* next;
 	Complaint* prev;

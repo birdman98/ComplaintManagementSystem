@@ -2,6 +2,12 @@
 #include "ListOfComplaints.h"
 #include <iostream>
 
+//TODO:
+//dodaæ wypisywanie wszystkich reklamacji, które nie zosta³y jeszcze rozpatrzone
+//przy starcie programu przypominaæ, ¿e siê koñczy czas na rozpatrzenie jakiejœ reklamacji
+//inicjalizacja pola daty aktualn¹ dat¹ systemow¹
+//przeci¹¿yæ operator wypisywania
+//dodaæ metodê zwracaj¹c¹ iloœæ reklamacji oczekuj¹cych na rozpatrzenie w systemie i ew. zwi¹zane z tym pole statyczne
 
 ListOfComplaints::ListOfComplaints() :
 
@@ -19,9 +25,44 @@ ListOfComplaints::ListOfComplaints(Complaint complaint_) {
 
 bool ListOfComplaints::deleteComplaint(const std::string &complaintToDelete) {
 
-	std::cout<<"Funkcjonalnosc w trakcie budowy\n\n";
+	Complaint* current = head;
+	Complaint* prev = nullptr;
+	Complaint* next = nullptr;
 
-	return false;
+
+	while ((current != nullptr) && (current->getComplaintName() != complaintToDelete)) {
+
+		current = current->getNext();
+	}
+
+	if (current == nullptr) {
+
+		std::cout << "Podana reklamacja nie istnieje!\n\n";
+
+		return false;
+	}
+
+	if(current == head) {
+
+		delete current;
+
+		head = nullptr;
+		top = nullptr;
+
+		return true;
+	}
+
+	prev = current->getPrev(); 
+	next = current->getNext();
+
+	prev->setNext(next);
+	next->setPrev(prev);
+
+	delete current;
+
+	std::cout << "\nUsunieto reklamacje o tytule " << complaintToDelete << "\n\n";
+
+	return true;
 }
 
 bool ListOfComplaints::addComplaint(Complaint &complaintToAdd) {
@@ -52,23 +93,44 @@ bool ListOfComplaints::addComplaint(Complaint &complaintToAdd) {
 	return true;
 }
 
-Complaint ListOfComplaints::findComplaint(const std::string &complaintToFind) {
-
-	std::cout << "Funkcjonalnosc w trakcie budowy\n\n";
-
-	return Complaint();
-}
-
-void ListOfComplaints::sortComplaintsBy(const int &sortByChoice) {
-
-	std::cout << "Funkcjonalnosc w trakcie budowy\n\n";
-}
-
-void ListOfComplaints::printComplaints() {
+Complaint ListOfComplaints::findComplaint(const std::string &complaintToFind) const {
 
 	Complaint* current = head;
 
-	while (current != nullptr) { //przeci¹¿yæ operatory wypisywania
+	while((current != nullptr) && (current->getComplaintName() != complaintToFind)) {
+
+		current = current->getNext();		
+	}
+
+	if(current==nullptr) {
+
+		std::cout << "\nReklamacja " << complaintToFind << " nie istnieje!\n\n";
+
+		return Complaint();
+		
+	}
+	
+
+	return *current;
+}
+
+void ListOfComplaints::sortComplaintsBy(const int &sortByChoice) const {
+
+	std::cout << "Funkcjonalnosc w trakcie budowy\n\n";
+}
+
+void ListOfComplaints::printComplaints() const {
+
+	Complaint* current = head;
+
+	if(current == nullptr) {
+
+		std::cout << "Lista reklamacji jest pusta!\n";
+		
+
+	}
+
+	while (current != nullptr) { 
 
 		std::cout << current->getComplaintName() << "\n" << current->getComplaintedItem() << "\n\n";
 
@@ -77,7 +139,34 @@ void ListOfComplaints::printComplaints() {
 
 }
 
+void ListOfComplaints::printUnexaminedComplaints() const {
+
+	Complaint* current = this->head;
+
+	while(current != nullptr) {
+		
+		if((current->getStatus() == "zgloszone") || (current->getStatus() == "w toku")) {
+			
+			//std::cout << *current << "\n____________________________\n";
+		}
+
+		current = current->getNext();
+	}
+}
+
+
 ListOfComplaints::~ListOfComplaints() {
+
+	Complaint* toDelete = this->head;
+
+	while(toDelete != nullptr) {
+		
+		head = head->getNext();
+
+		delete toDelete;
+
+		toDelete = head;
+	}
 
 
 }

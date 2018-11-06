@@ -5,13 +5,16 @@
 Employee::Employee() :
 
 	name(""),
-	surname("") {
+	surname(""),
+    employeesID("") {
 }
 
 Employee::Employee(const std::string &name_, const std::string &surname_) :
 
 	name(name_),
 	surname(surname_) {
+
+	//this->employeesID = makeIDForUser();
 }
 
 void Employee::setName(const std::string &name) {

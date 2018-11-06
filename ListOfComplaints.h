@@ -7,16 +7,17 @@ class ListOfComplaints {
 	Complaint* head;
 	Complaint* top;
 
-public: //jak inicjalizowaæ pierwszy element (najlepiej ¿eby by³ nie pusty!)
+public: 
 
 	ListOfComplaints();
-	ListOfComplaints(Complaint complaint_); //czy nie lepiej konstruktor przenosz¹cy? lub kopiuj¹cy lub operator przeniesienia?
+	ListOfComplaints(Complaint complaint_); 
 
 	bool deleteComplaint(const std::string &complaintToDelete);
 	bool addComplaint(Complaint &complaintToAdd);
-	Complaint findComplaint(const std::string &complaintToFind);
-	void sortComplaintsBy(const int &sortByChoice);
-	void printComplaints();
+	Complaint findComplaint(const std::string &complaintToFind) const;
+	void sortComplaintsBy(const int &sortByChoice) const;
+	void printComplaints() const;
+	void printUnexaminedComplaints() const;
 
 	~ListOfComplaints();
 };
