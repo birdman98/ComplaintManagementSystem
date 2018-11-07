@@ -36,3 +36,37 @@ std::string Employee::getSurname() const {
 
 	return this->surname;
 }
+
+std::istream& operator>>(std::istream &input, Employee &toFill) {
+
+	std::cout << "Podaj swoje dane jako osoby obslugujacej reklamacje: \n\n";
+
+	std::cout << "Imie: ";
+	input >> toFill.name;
+
+	std::cout << "Nazwisko: ";
+	input >> toFill.surname;
+
+	std::cout << "Pesel: "; //jeszcze ID
+	input >> toFill.pesel;
+
+
+	return input;
+}
+
+std::ostream & operator<<(std::ostream &output, const Employee &toPrint) { //RODO, wiec wyswietlanie tylko po ID + pesel?
+
+	std::cout << "Dane osoby obslugujacej reklamacje: \n\n";
+
+	std::cout << "Imie: ";
+	output << toPrint.name;
+
+	std::cout << "Nazwisko: ";
+	output << toPrint.surname;
+
+	std::cout << "Pesel: "; //jeszcze ID
+    output << toPrint.pesel;
+
+
+	return output;
+}

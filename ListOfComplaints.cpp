@@ -157,7 +157,7 @@ void ListOfComplaints::printUnexaminedComplaints() const {
 
 ListOfComplaints::~ListOfComplaints() {
 
-	Complaint* toDelete = this->head;
+	Complaint* toDelete = this->head; //zabezpieczenie przed pust¹ list¹?
 
 	while(toDelete != nullptr) {
 		

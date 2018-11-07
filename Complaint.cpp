@@ -5,7 +5,6 @@
 #include <iostream>
 #include <ctime>
 
-
 Complaint::Complaint() : 
 	
 	complaintTitle(""), //czy tu nie powinienem inicjalizowaæ danymi reklamacji, podanymi przez employee?
@@ -46,7 +45,9 @@ void Complaint::setDateOfComplaint() { //https://stackoverflow.com/questions/172
 
 	std::string currentDateAndTime(30, '\0');
 
-	std::strftime(&currentDateAndTime[0], currentDateAndTime.size(), "%Y-%m-%d %H:%M:%S", std::localtime(&now));
+	std::strftime(&currentDateAndTime[0], currentDateAndTime.size(), "%Y-%m-%d %H:%M:%S", std::localtime(&now)); //poprawic, zeby nie rzucalo bledu
+
+	//std::strftime(&currentDateAndTime[0], currentDateAndTime.size(), "%Y-%m-%d %H:%M:%S", std::localtime_s(&currentDateAndTime, &now));
 
 	this->dateOfComplaint = currentDateAndTime;
 }
@@ -74,7 +75,9 @@ std::string Complaint::getDateOfComplaint() const {
 
 int Complaint::getDuration() const {
 
-	return this->duration;
+	//return this->duration; Zaimplementowaæ ró¿nice czasu miêdzy current time a tym zapisanym w polu date
+
+	return NULL;
 }
 
 std::string Complaint::getStatus() const {
@@ -114,12 +117,29 @@ void Complaint::setPrev(Complaint* prevToSet) {
 Complaint::~Complaint() { 
 }
 
-std::istream & operator>>(std::istream & input, Complaint & toFill)
-{
-	// TODO: tu wstawiæ instrukcjê return
+std::istream & operator>>(std::istream & input, Complaint & toFill) { //trzeba na getlineach
+
+	std::cout << "Podaj tytul reklamacji: ";
+	input >> toFill.complaintTitle;
+
+	std::cout << "Podaj nazwe reklamowanego towaru: ";
+	input >> toFill.complaintedItem;
+
+	input >> toFill.customersData;
+	input >> toFill.employeesData;
+	//jeszcze status - to z jakims menu i data reklamacji - to z mojej metody
+
+	return input;
+	
 }
 
-std::ostream & operator<<(std::ostream & output, Complaint & toPrint)
-{
-	// TODO: tu wstawiæ instrukcjê return
+std::ostream & operator<<(std::ostream & output, const Complaint & toPrint) {
+
+
+	std::cout << "Tytul reklamacji: " << toPrint.complaintTitle << "\n";
+	std::cout << "Reklamowany towar: " << toPrint.complaintedItem << "\n";
+	std::cout << toPrint.customersData << "\n";
+	std::cout << toPrint.employeesData << "\n";
+
+	return output;	
 }
