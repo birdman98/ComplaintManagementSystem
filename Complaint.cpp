@@ -1,15 +1,18 @@
 #include "stdafx.h"
 #include "Complaint.h"
 
+#include <chrono>
+#include <iostream>
+#include <ctime>
+
 
 Complaint::Complaint() : 
 	
-	complaintName(""), //czy tu nie powinienem inicjalizowaæ danymi reklamacji, podanymi przez employee?
+	complaintTitle(""), //czy tu nie powinienem inicjalizowaæ danymi reklamacji, podanymi przez employee?
     complaintedItem(""), 
 	customersData(), 
 	employeesData(), 
 	dateOfComplaint(""), 
-	duration(NULL),
 	status(""),
 	next(nullptr),
 	prev(nullptr) {
@@ -17,20 +20,19 @@ Complaint::Complaint() :
 
 Complaint::Complaint(const Complaint &complaint) :
 
-	complaintName(complaint.complaintName),
+	complaintTitle(complaint.complaintTitle),
 	complaintedItem(complaint.complaintedItem),
 	customersData(complaint.customersData),
 	employeesData(complaint.employeesData),
 	dateOfComplaint(complaint.dateOfComplaint),
-	duration(NULL), //??
 	status(complaint.status),
 	next(nullptr),
 	prev(nullptr) {
 }
 
-void Complaint::setComplaintName(const std::string &complaintName) {
+void Complaint::setComplaintTitle(const std::string &complaintTitle) {
 
-	this->complaintName = complaintName;
+	this->complaintTitle = complaintTitle;
 }
 
 void Complaint::setComplaintedItem(const std::string &complaintedItem) {
@@ -38,9 +40,15 @@ void Complaint::setComplaintedItem(const std::string &complaintedItem) {
 	this->complaintedItem = complaintedItem;
 }
 
-void Complaint::setDateOfComplaint(const std::string &dateOfComplaint) {
+void Complaint::setDateOfComplaint() { //https://stackoverflow.com/questions/17223096/outputting-date-and-time-in-c-using-stdchrono
+	
+	std::time_t now = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
 
-	this->dateOfComplaint = dateOfComplaint;
+	std::string currentDateAndTime(30, '\0');
+
+	std::strftime(&currentDateAndTime[0], currentDateAndTime.size(), "%Y-%m-%d %H:%M:%S", std::localtime(&now));
+
+	this->dateOfComplaint = currentDateAndTime;
 }
 
 void Complaint::setStatus(const std::string &status) {
@@ -51,7 +59,7 @@ void Complaint::setStatus(const std::string &status) {
 
 std::string Complaint::getComplaintName() const {
 
-	return this->complaintName;
+	return this->complaintTitle;
 }
 
 std::string Complaint::getComplaintedItem() const {
@@ -104,4 +112,14 @@ void Complaint::setPrev(Complaint* prevToSet) {
 }
 
 Complaint::~Complaint() { 
+}
+
+std::istream & operator>>(std::istream & input, Complaint & toFill)
+{
+	// TODO: tu wstawiæ instrukcjê return
+}
+
+std::ostream & operator<<(std::ostream & output, Complaint & toPrint)
+{
+	// TODO: tu wstawiæ instrukcjê return
 }

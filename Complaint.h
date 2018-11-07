@@ -4,15 +4,16 @@
 #include "Employee.h"
 
 #include <string>
+#include <ostream>
+#include <istream>
 
 class Complaint {
 
-	std::string complaintName;
+	std::string complaintTitle;
 	std::string complaintedItem;
 	Customer customersData; //ale przy wyœwietlaniu ju¿ po ID
 	Employee employeesData; //tak samo
 	std::string dateOfComplaint;
-	int duration; //czas miniony od podjêcia reklamacji, volatile??, czy to pole tu potrzebne czy lepiej metode, ktora na biezaco to wyliczy?
 	std::string status; //status wybierany z menu, nie wpisywany z palca!
 
 	Complaint* next;
@@ -24,15 +25,15 @@ public:
 	Complaint(const Complaint &complaint);
 	//Complaint() jeszcze konstruktor wieloargumentowy
 
-	void setComplaintName(const std::string &complaintName);
+	void setComplaintTitle(const std::string &complaintTitle);
 	void setComplaintedItem(const std::string &complaintedItem);
-	void setDateOfComplaint(const std::string &dateOfComplaint);
+	void setDateOfComplaint();
 	void setStatus(const std::string &status);
 
 	std::string getComplaintName() const;
 	std::string getComplaintedItem() const;
 	std::string getDateOfComplaint() const;
-	int getDuration() const;
+	int getDuration() const; //typ zwracany??
 	std::string getStatus() const;
 
 	Complaint* getNext() const;
@@ -40,6 +41,9 @@ public:
 
 	void setNext(Complaint* nextToSet);
 	void setPrev(Complaint* prevToSet);
+
+	friend std::istream& operator>>(std::istream& input, Complaint &toFill);
+	friend std::ostream& operator<<(std::ostream& output, Complaint &toPrint);
 
 	~Complaint(); //potrzebny akurat tutaj??
 };
