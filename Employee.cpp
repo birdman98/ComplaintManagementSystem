@@ -39,32 +39,36 @@ std::string Employee::getSurname() const {
 
 std::istream& operator>>(std::istream &input, Employee &toFill) {
 
-	std::cout << "Podaj swoje dane jako osoby obslugujacej reklamacje: \n\n";
+	input.clear();
+	input.sync();
+
+	std::cout << "\nPodaj swoje dane jako osoby obslugujacej reklamacje: \n\n";
 
 	std::cout << "Imie: ";
-	input >> toFill.name;
+	std::getline(input, toFill.name);
 
 	std::cout << "Nazwisko: ";
-	input >> toFill.surname;
+	std::getline(input, toFill.surname);
 
 	std::cout << "Pesel: "; //jeszcze ID
-	input >> toFill.pesel;
+	//input >> toFill.pesel;
+	std::getline(input, toFill.pesel);
 
 
 	return input;
 }
 
-std::ostream & operator<<(std::ostream &output, const Employee &toPrint) { //RODO, wiec wyswietlanie tylko po ID + pesel?
+std::ostream& operator<<(std::ostream &output, const Employee &toPrint) { //RODO, wiec wyswietlanie tylko po ID + pesel?
 
 	std::cout << "Dane osoby obslugujacej reklamacje: \n\n";
 
 	std::cout << "Imie: ";
 	output << toPrint.name;
 
-	std::cout << "Nazwisko: ";
+	std::cout << "\nNazwisko: ";
 	output << toPrint.surname;
 
-	std::cout << "Pesel: "; //jeszcze ID
+	std::cout << "\nPesel: "; //jeszcze ID
     output << toPrint.pesel;
 
 

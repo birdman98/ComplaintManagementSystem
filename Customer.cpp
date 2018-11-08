@@ -40,45 +40,49 @@ std::string Customer::getSurname() const {
 	return this->surname;
 }
 
-std::istream & operator>>(std::istream &input, Customer &toFill) {
+std::istream & operator>>(std::istream &input, Customer &toFill) { //wywo³ywaæ metodê do walidacji danych - regex, exceptions
 
-	std::cout << "Podaj dane osoby skladajacej reklamacje...\n\n";
+	input.clear();
+	input.sync();
+
+	std::cout << "\nPodaj dane osoby skladajacej reklamacje...\n\n";
 
 	std::cout << "Imie: ";
-	input >> toFill.name;
+	std::getline(input, toFill.name);
 
 	std::cout << "Nazwisko: ";
-	input >> toFill.surname;
+	std::getline(input, toFill.surname);
 
-	std::cout << "Adres (oddziel ulice od kodu pocztowego ,): ";
-	input >> toFill.adress;
+	std::cout << "Adres: ";
+	std::getline(input, toFill.adress);
 
 	std::cout << "Numer telefonu: ";
-	input >> toFill.phoneNumber;
+	std::getline(input, toFill.phoneNumber);
 
 	std::cout << "Pesel: ";
-	input >> toFill.pesel; //jeszcze ID
+	//input >> toFill.pesel; //jeszcze ID, dlaczego do employee lapie bialy znak jak tu nie ma getlinea?
+	std::getline(input, toFill.pesel); 
 
 	return input;
 }
 
 std::ostream & operator<<(std::ostream &output, const Customer &toPrint) {
 	
-	std::cout << "Dane osoby skladajacej reklamacje: \n\n";
+	std::cout << "\nDane osoby skladajacej reklamacje: \n\n";
 
 	std::cout << "Imie: ";
 	output << toPrint.name;
 
-	std::cout << "Nazwisko: ";
+	std::cout << "\nNazwisko: ";
 	output << toPrint.surname;
 
-	std::cout << "Adres (oddziel ulice od kodu pocztowego ,): ";
+	std::cout << "\nAdres: ";
 	output << toPrint.adress;
 
-	std::cout << "Numer telefonu: ";
+	std::cout << "\nNumer telefonu: ";
 	output << toPrint.phoneNumber;
 
-	std::cout << "Pesel: ";
+	std::cout << "\nPesel: ";
 	output << toPrint.pesel; //jeszcze ID
 
 	return output;

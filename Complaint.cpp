@@ -117,13 +117,16 @@ void Complaint::setPrev(Complaint* prevToSet) {
 Complaint::~Complaint() { 
 }
 
-std::istream & operator>>(std::istream & input, Complaint & toFill) { //trzeba na getlineach
+std::istream & operator>>(std::istream &input, Complaint &toFill) { //trzeba na getlineach
+
+	input.clear();
+	input.sync();
 
 	std::cout << "Podaj tytul reklamacji: ";
-	input >> toFill.complaintTitle;
+	std::getline(input, toFill.complaintTitle);
 
 	std::cout << "Podaj nazwe reklamowanego towaru: ";
-	input >> toFill.complaintedItem;
+	std::getline(input, toFill.complaintedItem);
 
 	input >> toFill.customersData;
 	input >> toFill.employeesData;
