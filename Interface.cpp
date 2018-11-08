@@ -26,6 +26,7 @@ void Interface::printMenu() {
 	std::cout << "** 2. Wyszukaj reklamacje                                                    **\n";
 	std::cout << "** 3. Usun wybrana reklamacje                                                **\n";
 	std::cout << "** 4. Zmien status wybranej reklamacji                                       **\n";
+	std::cout << "** 5. Wyswietl wszystkie reklamacje w systemie                               **\n";
 	std::cout << "** 9. Wyjdz.                                                                 **\n";
 	std::cout << "**                                                                           **\n";
 	std::cout << "*******************************************************************************\n";
@@ -34,10 +35,12 @@ void Interface::printMenu() {
 
 void Interface::getUsersChoice(int& choice) {
 
-	char ws = 0;
-
+	std::string temp = "";
 	std::cout << "Podaj swoj wybor: ";
-	std::cin >> choice >> ws; //exception na coœ innego ni¿ int
+	//std::cin >> choice; //exception na coœ innego ni¿ int, ³apie white space'y do strumienia! - obejœæ to bez u¿ycia getline'a
+	std::getline(std::cin, temp); //w sumie tak jest nawet lepiej, bo sie zabepieczam przed wczytanuem sringa do inta
+
+	choice = atoi(temp.c_str());
 
 }
 
@@ -49,6 +52,7 @@ void Interface::getUsersChoice(int& choice) {
 
 	 std::cin.clear();
 	 std::cin.sync();
+	
 
 	 getUsersChoice(choice);
 
@@ -58,15 +62,19 @@ void Interface::getUsersChoice(int& choice) {
 
 		 system("cls"); //³apie mi enter ze strumienia! - mo¿e getline na choice
 
-		 std::cout << "Modul dodawania reklamacji.\n\n";
+		 std::cout << "MODUL DODAWANIA REKLAMACJI.\n\n";
 
 		 Complaint usersComplaint;
 
 		 std::cin >> usersComplaint;
 
-		 usersComplaint.setDateOfComplaint();	
+		 usersComplaint.setDateOfComplaint();
+		 usersComplaint.setStatus(accepted);
 
 	     list.addComplaint(usersComplaint);
+
+		 std::cout << "\n\nWcisnij dowolny klawisz, aby kontynuowac....";
+		 std::cin >> choice;
 
 			 break;
 		 }
@@ -86,6 +94,8 @@ void Interface::getUsersChoice(int& choice) {
 
 	 case changeStatusOfComplaint: {
 
+		 system("cls");
+
 		 std::string toChangeTitle;
 
 		 std::cout << "Podaj tytul reklamacji, ktorej status chcesz zmienic: ";
@@ -100,7 +110,7 @@ void Interface::getUsersChoice(int& choice) {
 			 std::cout << "Obecny status reklamacji o tytule: " << complaintToChange->getComplaintTitle() << " : " << complaintToChange->getStatus() << "\n\n";
 
 			 std::cout << "Wybierz na jaki status chcesz zmienic obecny status reklamacji:\n";
-			 std::cout << "1. Przyjeta,\n2. W toku,\n3.Rozpatrzona pozytywnie,\n4. Rozpatrzona negatywnie,\n5. Odrzucona.\n\n";
+			 std::cout << "1. Przyjeta,\n2. W toku,\n3. Rozpatrzona pozytywnie,\n4. Rozpatrzona negatywnie,\n5. Odrzucona.\n\n";
 
 			 std::cout << "Twoj wybor: ";
 			 std::cin >> statusChoice;
@@ -116,6 +126,21 @@ void Interface::getUsersChoice(int& choice) {
 			std::cout << "Nie udalo sie zmienic statusu podanej reklamacji.\n\n";
 		 }
 
+		 std::cout << "\n\nWcisnij dowolny klawisz, aby kontynuowac....";
+		 std::cin >> choice;
+
+
+		 break;
+	 }
+	 case displayComplaints: {
+		 
+		 system("cls");
+
+		 list.printComplaints();
+
+
+		 std::cout << "\n\nWcisnij dowolny klawisz, aby kontynuowac....";
+		 std::cin >> choice;
 
 		 break;
 	 }
