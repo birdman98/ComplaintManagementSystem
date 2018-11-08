@@ -57,27 +57,27 @@ void Complaint::setStatus(const int &statusChoice) {
 	switch(statusChoice) { //pomyœleæ tu o enumach
 		
 	case 1: {
-		this->status = "przyjeta";
+		this->status = accepted;
 		break;
 	}
 	case 2: {
 		
-		this->status = "w toku";
+		this->status = processing;
 		break;
 	}
 	case 3: {
 		
-		this->status = "rozpatrzona pozytywnie";
+		this->status = consideredPositive;
 		break;
 	}
 	case 4: {
 
-		this->status = "rozpatrzona negatywnie";
+		this->status = consideredNegative;
 		break;
 	}
 	case 5: {
 		
-		this->status = "odrzucona";
+		this->status = rejected;
 		break;
 	}
 	}

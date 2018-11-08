@@ -48,3 +48,4 @@ public:
 	~Complaint(); //potrzebny akurat tutaj??
 };
 
+enum possibleStatuses { accepted = 1, processing, consideredPositive, consideredNegative, rejected };
