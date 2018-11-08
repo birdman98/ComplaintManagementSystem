@@ -52,13 +52,39 @@ void Complaint::setDateOfComplaint() { //https://stackoverflow.com/questions/172
 	this->dateOfComplaint = currentDateAndTime;
 }
 
-void Complaint::setStatus(const std::string &status) {
+void Complaint::setStatus(const int &statusChoice) {
 
-	this->status = status;
+	switch(statusChoice) { //pomyœleæ tu o enumach
+		
+	case 1: {
+		this->status = "przyjeta";
+		break;
+	}
+	case 2: {
+		
+		this->status = "w toku";
+		break;
+	}
+	case 3: {
+		
+		this->status = "rozpatrzona pozytywnie";
+		break;
+	}
+	case 4: {
+
+		this->status = "rozpatrzona negatywnie";
+		break;
+	}
+	case 5: {
+		
+		this->status = "odrzucona";
+		break;
+	}
+	}
 
 }
 
-std::string Complaint::getComplaintName() const {
+std::string Complaint::getComplaintTitle() const {
 
 	return this->complaintTitle;
 }
