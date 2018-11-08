@@ -3,6 +3,7 @@
 
 #include <string>
 #include <iostream>
+#include <Windows.h>
 
 int Interface::choice = 0;
 
@@ -38,6 +39,8 @@ void Interface::getUsersChoice(int& choice) {
 
  bool Interface::menu() 
  {
+	 system("cls");
+
 	 printMenu();
 
 	 getUsersChoice(choice);

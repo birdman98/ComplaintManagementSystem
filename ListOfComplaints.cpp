@@ -132,7 +132,7 @@ void ListOfComplaints::printComplaints() const {
 
 	while (current != nullptr) { 
 
-		std::cout << current->getComplaintName() << "\n" << current->getComplaintedItem() << "\n\n";
+		std::cout << *current << "\n____________________________________________\n";
 
 		current = current->getNext();
 	}

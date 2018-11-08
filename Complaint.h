@@ -25,7 +25,7 @@ public:
 	Complaint(const Complaint &complaint);
 	//Complaint() jeszcze konstruktor wieloargumentowy
 
-	void setComplaintTitle(const std::string &complaintTitle);
+	void setComplaintTitle(const std::string &complaintTitle); //te sety s¹ w sumie zbedne, skoro mam operator, jedynie set dla statusu - w interface zrobic menu do tego
 	void setComplaintedItem(const std::string &complaintedItem);
 	void setDateOfComplaint();
 	void setStatus(const std::string &status);

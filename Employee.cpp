@@ -60,7 +60,7 @@ std::istream& operator>>(std::istream &input, Employee &toFill) {
 
 std::ostream& operator<<(std::ostream &output, const Employee &toPrint) { //RODO, wiec wyswietlanie tylko po ID + pesel?
 
-	std::cout << "Dane osoby obslugujacej reklamacje: \n\n";
+	std::cout << "\nDane osoby obslugujacej reklamacje: \n\n";
 
 	std::cout << "Imie: ";
 	output << toPrint.name;
