@@ -14,7 +14,7 @@ public:
 
 	bool deleteComplaint(const std::string &complaintToDelete);
 	bool addComplaint(Complaint &complaintToAdd);
-	Complaint findComplaint(const std::string &complaintToFind) const;
+	Complaint* findComplaint(const std::string &complaintToFind) const;
 	void sortComplaintsBy(const int &sortByChoice) const;
 	void printComplaints() const;
 	void printUnexaminedComplaints() const;
