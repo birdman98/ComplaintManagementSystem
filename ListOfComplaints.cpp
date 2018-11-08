@@ -30,7 +30,7 @@ bool ListOfComplaints::deleteComplaint(const std::string &complaintToDelete) {
 	Complaint* next = nullptr;
 
 
-	while ((current != nullptr) && (current->getComplaintName() != complaintToDelete)) {
+	while ((current != nullptr) && (current->getComplaintTitle() != complaintToDelete)) {
 
 		current = current->getNext();
 	}
@@ -93,11 +93,11 @@ bool ListOfComplaints::addComplaint(Complaint &complaintToAdd) {
 	return true;
 }
 
-Complaint ListOfComplaints::findComplaint(const std::string &complaintToFind) const {
+Complaint* ListOfComplaints::findComplaint(const std::string &complaintToFind) const {
 
 	Complaint* current = head;
 
-	while((current != nullptr) && (current->getComplaintName() != complaintToFind)) {
+	while((current != nullptr) && (current->getComplaintTitle() != complaintToFind)) {
 
 		current = current->getNext();		
 	}
@@ -106,12 +106,12 @@ Complaint ListOfComplaints::findComplaint(const std::string &complaintToFind) co
 
 		std::cout << "\nReklamacja " << complaintToFind << " nie istnieje!\n\n";
 
-		return Complaint();
+		return nullptr;
 		
 	}
 	
 
-	return *current;
+	return current;
 }
 
 void ListOfComplaints::sortComplaintsBy(const int &sortByChoice) const {
