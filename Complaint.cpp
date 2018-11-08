@@ -56,28 +56,28 @@ void Complaint::setStatus(const int &statusChoice) {
 
 	switch(statusChoice) { //pomyœleæ tu o enumach
 		
-	case 1: {
-		this->status = accepted;
+	case accepted: {
+		this->status = "przyjeta";
 		break;
 	}
-	case 2: {
+	case processing: {
 		
-		this->status = processing;
+		this->status = "w toku";
 		break;
 	}
-	case 3: {
+	case consideredPositive: {
 		
-		this->status = consideredPositive;
+		this->status = "rozpatrzona pozytywnie";
 		break;
 	}
-	case 4: {
+	case consideredNegative: {
 
-		this->status = consideredNegative;
+		this->status = "rozpatrzona negatywnie";
 		break;
 	}
-	case 5: {
+	case rejected: {
 		
-		this->status = rejected;
+		this->status = "odrzucona";
 		break;
 	}
 	}
@@ -156,8 +156,7 @@ std::istream & operator>>(std::istream &input, Complaint &toFill) { //trzeba na 
 
 	input >> toFill.customersData;
 	input >> toFill.employeesData;
-	//jeszcze status - to z jakims menu i data reklamacji - to z mojej metody
-
+	
 	return input;
 	
 }
@@ -167,8 +166,11 @@ std::ostream & operator<<(std::ostream & output, const Complaint & toPrint) {
 
 	std::cout << "Tytul reklamacji: " << toPrint.complaintTitle << "\n";
 	std::cout << "Reklamowany towar: " << toPrint.complaintedItem << "\n";
+	std::cout << "Data przyjecia reklamacji: " << toPrint.dateOfComplaint << "\n";
+	std::cout << "Status reklamacji: " << toPrint.status << "\n";
 	std::cout << toPrint.customersData << "\n";
 	std::cout << toPrint.employeesData << "\n";
+	
 
 	return output;	
 }
