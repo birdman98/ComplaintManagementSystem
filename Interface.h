@@ -1,7 +1,10 @@
 #pragma once
+
+#include "ListOfComplaints.h"
+
 class Interface {
 
-	/*const*/ enum choices {addComplaint = 1, searchComplaint, deleteComplaint, employeesComplaints, exit = 9};
+	/*const*/ enum choices {addComplaint = 1, searchComplaint, deleteComplaint, changeStatusOfComplaint, employeesComplaints, exit = 9};
 
 	static int choice;
 
@@ -12,6 +15,6 @@ public:
 
 	static void printMenu();
     static void getUsersChoice(int& choice);
-	static bool menu();
+	static bool menu(ListOfComplaints &list);
 };
 
