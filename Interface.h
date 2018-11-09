@@ -2,11 +2,11 @@
 
 #include "ListOfComplaints.h"
 
-const int oneCharacter = 1;
+const int invalidInput = 99;
 
 class Interface {
 
-	/*const*/ enum choices {addComplaint = 1, searchComplaint, deleteComplaint, changeStatusOfComplaint, displayComplaints, employeesComplaints, exit = 9};
+	enum choices {addComplaint = 1, searchComplaint, deleteComplaint, changeStatusOfComplaint, displayComplaints, employeesComplaints, exit = 9};
 
 	static int choice;
 
