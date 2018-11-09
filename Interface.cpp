@@ -5,6 +5,8 @@
 #include <string>
 #include <iostream>
 #include <Windows.h>
+#include <exception>
+//#include <limits>
 
 int Interface::choice = 0;
 
@@ -34,13 +36,23 @@ void Interface::printMenu() {
 }
 
 void Interface::getUsersChoice(int& choice) {
+	
+   // std::string exception;
 
-	std::string temp = "";
-	std::cout << "Podaj swoj wybor: ";
-	//std::cin >> choice; //exception na coœ innego ni¿ int, ³apie white space'y do strumienia! - obejœæ to bez u¿ycia getline'a
-	std::getline(std::cin, temp); //w sumie tak jest nawet lepiej, bo sie zabepieczam przed wczytanuem sringa do inta
+	try {
 
-	choice = atoi(temp.c_str());
+		std::cout << "Podaj swoj wybor: ";
+		std::cin >> choice; //exception na coœ innego ni¿ int
+	} //catch(std::invalid_argument &exception) {
+	catch(...) {
+		
+		std::cerr << "Podano zly argument! Sprobuj jeszcze raz: " /*<< &exception*/;
+
+		choice = 99;
+		system("pause");
+	}
+
+	std::cin.ignore(oneCharacter, '\n');
 
 }
 
@@ -50,8 +62,8 @@ void Interface::getUsersChoice(int& choice) {
 
 	 printMenu();
 
-	 std::cin.clear();
-	 std::cin.sync();
+	 //std::cin.clear();
+	// std::cin.sync();
 	
 
 	 getUsersChoice(choice);
@@ -73,8 +85,7 @@ void Interface::getUsersChoice(int& choice) {
 
 	     list.addComplaint(usersComplaint);
 
-		 std::cout << "\n\nWcisnij dowolny klawisz, aby kontynuowac....";
-		 std::cin >> choice;
+		 system("pause");
 
 			 break;
 		 }
@@ -126,8 +137,7 @@ void Interface::getUsersChoice(int& choice) {
 			std::cout << "Nie udalo sie zmienic statusu podanej reklamacji.\n\n";
 		 }
 
-		 std::cout << "\n\nWcisnij dowolny klawisz, aby kontynuowac....";
-		 std::cin >> choice;
+		 system("pause");
 
 
 		 break;
@@ -139,8 +149,7 @@ void Interface::getUsersChoice(int& choice) {
 		 list.printComplaints();
 
 
-		 std::cout << "\n\nWcisnij dowolny klawisz, aby kontynuowac....";
-		 std::cin >> choice;
+		 system("pause");
 
 		 break;
 	 }
@@ -149,6 +158,8 @@ void Interface::getUsersChoice(int& choice) {
 
 		// employeesComplaints();
 
+		 system("pause");
+
 		 break;
 	 }
 	 case exit: {
@@ -156,6 +167,8 @@ void Interface::getUsersChoice(int& choice) {
 		 std::cout<<"Trwa zamykanie programu....\n\n";
 
 		 //saveFromListToFile();
+
+		
 
 
 		 return false;
@@ -166,6 +179,9 @@ void Interface::getUsersChoice(int& choice) {
 	 default: {
 
 	 std::cout << "Niepoprawny wybor, sprobuj ponownie.\n\n";
+
+	 system("pause");
+
 	 }
 
 	 }

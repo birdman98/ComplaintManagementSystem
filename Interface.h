@@ -2,6 +2,8 @@
 
 #include "ListOfComplaints.h"
 
+const int oneCharacter = 1;
+
 class Interface {
 
 	/*const*/ enum choices {addComplaint = 1, searchComplaint, deleteComplaint, changeStatusOfComplaint, displayComplaints, employeesComplaints, exit = 9};
