@@ -5,8 +5,7 @@
 #include <string>
 #include <iostream>
 #include <Windows.h>
-#include <exception>
-//#include <limits>
+#include <limits>
 
 int Interface::choice = 0;
 
@@ -37,22 +36,20 @@ void Interface::printMenu() {
 
 void Interface::getUsersChoice(int& choice) {
 	
-   // std::string exception;
-
-	try {
-
 		std::cout << "Podaj swoj wybor: ";
-		std::cin >> choice; //exception na coœ innego ni¿ int
-	} //catch(std::invalid_argument &exception) {
-	catch(...) {
-		
-		std::cerr << "Podano zly argument! Sprobuj jeszcze raz: " /*<< &exception*/;
 
-		choice = 99;
-		system("pause");
-	}
+	    if(!std::cin >> choice) {
 
-	std::cin.ignore(oneCharacter, '\n');
+			std::cerr << "Podano zly argument! Sprobuj jeszcze raz!";
+
+			choice = invalidInput;
+
+			system("pause");	    
+
+	    }
+			
+
+	std::cin.ignore((std::numeric_limits<std::streamsize>::max)(), '\n');
 
 }
 
