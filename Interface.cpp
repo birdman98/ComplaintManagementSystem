@@ -109,7 +109,7 @@ void Interface::getUsersChoice(int& choice) {
 
 		 Complaint* complaintToChange = list.findComplaint(toChangeTitle);
 
-		 if(complaintToChange) {
+		 if (complaintToChange) {
 
 			 int statusChoice = 0;
 
@@ -120,20 +120,20 @@ void Interface::getUsersChoice(int& choice) {
 
 			 Interface::getUsersChoice(statusChoice);
 
-			 complaintToChange->setStatus(statusChoice);
+			 if (statusChoice != invalidInput) {
 
-			 std::cout << "Status zostal zmieniony poprawnie.\n\n";
-			 
+				 complaintToChange->setStatus(statusChoice);
 
-		 }
-		 else {
-			 
-			std::cout << "Nie udalo sie zmienic statusu podanej reklamacji.\n\n";
+				 std::cout << "Status zostal zmieniony poprawnie.\n\n";
+			 }
+			 else {
+
+				 std::cout << "Nie udalo sie zmienic statusu podanej reklamacji.\n\n";
+			 }
 		 }
 
 		 system("pause");
-
-
+		 
 		 break;
 	 }
 	 case displayComplaints: {
