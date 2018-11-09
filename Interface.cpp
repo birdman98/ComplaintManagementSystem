@@ -38,13 +38,14 @@ void Interface::getUsersChoice(int& choice) {
 	
 		std::cout << "Podaj swoj wybor: ";
 
-	    if(!std::cin >> choice) {
+	    if(std::cin >> choice) {
+		    
+	    }
+		else {
 
-			std::cerr << "Podano zly argument! Sprobuj jeszcze raz!";
+			std::cin.clear();
 
 			choice = invalidInput;
-
-			system("pause");	    
 
 	    }
 			
@@ -59,19 +60,16 @@ void Interface::getUsersChoice(int& choice) {
 
 	 printMenu();
 
-	 //std::cin.clear();
-	// std::cin.sync();
-	
 
-	 getUsersChoice(choice);
+	getUsersChoice(choice);
 
 	 switch (choice) {
 
 	 case addComplaint: {
 
-		 system("cls"); //³apie mi enter ze strumienia! - mo¿e getline na choice
+		 system("cls"); 
 
-		 std::cout << "MODUL DODAWANIA REKLAMACJI.\n\n";
+		 std::cout << "MODUL DODAWANIA REKLAMACJI.\n________________________________________________________\n\n";
 
 		 Complaint usersComplaint;
 
@@ -120,8 +118,7 @@ void Interface::getUsersChoice(int& choice) {
 			 std::cout << "Wybierz na jaki status chcesz zmienic obecny status reklamacji:\n";
 			 std::cout << "1. Przyjeta,\n2. W toku,\n3. Rozpatrzona pozytywnie,\n4. Rozpatrzona negatywnie,\n5. Odrzucona.\n\n";
 
-			 std::cout << "Twoj wybor: ";
-			 std::cin >> statusChoice;
+			 Interface::getUsersChoice(statusChoice);
 
 			 complaintToChange->setStatus(statusChoice);
 
@@ -175,7 +172,7 @@ void Interface::getUsersChoice(int& choice) {
 
 	 default: {
 
-	 std::cout << "Niepoprawny wybor, sprobuj ponownie.\n\n";
+	 std::cout << "\n\nNiepoprawny wybor, sprobuj ponownie.\n\n";
 
 	 system("pause");
 
