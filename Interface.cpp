@@ -15,10 +15,6 @@ Interface::Interface()
 	choice = 0;
 }
 
-
-//Interface::~Interface() {
-//}
-
 void Interface::printMenu() {
 
 	std::cout << "*******************************************************************************\n";
@@ -86,10 +82,30 @@ void Interface::getUsersChoice(int& choice) {
 		 }
 	 case searchComplaint: {
 
-		// SearchComplaint();
+		 system("cls");
+
+		 std::string toFindTitle = "";
+
+		 std::cout << "Podaj tytul reklamacji do znalezienia w systemie: ";
+		 std::getline(std::cin, toFindTitle);
+
+		 Complaint* foundComplaint = list.findComplaint(toFindTitle);
+
+		 if(foundComplaint) {
+			 
+			 std::cout << *foundComplaint << "\n\n";
+		 }
+		 else {
+			 
+			 std::cout << "Nie znaleziono podanej reklamacji.\n\n";
+		 }
+
+		 system("pause");
 
 		 break;
 	 }
+
+	
 
 	 case deleteComplaint: {
 
