@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "Complaint.h"
+#include "Validators.h"
+
 
 #include <chrono>
 #include <iostream>
@@ -141,16 +143,48 @@ void Complaint::setPrev(Complaint* prevToSet) {
 Complaint::~Complaint() { 
 }
 
-std::istream & operator>>(std::istream &input, Complaint &toFill) { //trzeba na getlineach
+std::istream & operator>>(std::istream &input, Complaint &toFill) { //czyszczenie wejœcia a¿ do \n
 
-	input.clear();
+	Validators* titleValidator = new ComplaintTitle; 
+	Validators* itemValidator = new ComplaintedItem;
+
+	bool validated = true;
+
+	input.clear(); 
 	input.sync();
+	
+	do {
 
-	std::cout << "Podaj tytul reklamacji: ";
-	std::getline(input, toFill.complaintTitle);
+		std::cout << "Podaj tytul reklamacji: ";
+		std::getline(input, toFill.complaintTitle);
 
-	std::cout << "Podaj nazwe reklamowanego towaru: ";
-	std::getline(input, toFill.complaintedItem);
+		validated = titleValidator->validate(toFill.complaintTitle);
+
+		if(!validated) {
+			
+			std::cout << "\nNiepoprawny tytul reklamacji! Sprobuj jeszcze raz.\n\n";
+		}
+
+	} while (validated == false);
+
+
+	do {
+
+		std::cout << "Podaj nazwe reklamowanego towaru: ";
+		std::getline(input, toFill.complaintedItem);
+
+		validated = itemValidator->validate(toFill.complaintedItem);
+
+		if (!validated) {
+
+			std::cout << "\nNiepoprawna nazwa reklamowanego towaru! Sprobuj jeszcze raz.\n\n";
+		}
+
+	} while (validated == false);	
+	
+	
+	delete titleValidator;
+	delete itemValidator;
 
 	input >> toFill.customersData;
 	input >> toFill.employeesData;
