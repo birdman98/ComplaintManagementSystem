@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Customer.h"
+#include "Validators.h"
 
 
 Customer::Customer() :
@@ -40,28 +41,94 @@ std::string Customer::getSurname() const {
 	return this->surname;
 }
 
-std::istream & operator>>(std::istream &input, Customer &toFill) { //wywo³ywaæ metodê do walidacji danych - regex, exceptions
+std::istream& operator>>(std::istream &input, Customer &toFill) { //wywo³ywaæ metodê do walidacji danych - regex, exceptions
+
+	Validators* IDValidator = new IDData; 
+	Validators* adressValidator = new Adress;
+	Validators* phoneValidator = new PhoneNumber;
+	Validators* peselValidator = new Pesel;
+
+	bool validated = true;
 
 	input.clear();
 	input.sync();
 
 	std::cout << "\nPodaj dane osoby skladajacej reklamacje...\n\n";
 
-	std::cout << "Imie: ";
-	std::getline(input, toFill.name);
+	do {
 
-	std::cout << "Nazwisko: ";
-	std::getline(input, toFill.surname);
+		std::cout << "Imie: ";
+		std::getline(input, toFill.name);
 
-	std::cout << "Adres: ";
-	std::getline(input, toFill.adress);
+		validated = IDValidator->validate(toFill.name);
 
-	std::cout << "Numer telefonu: ";
-	std::getline(input, toFill.phoneNumber);
+		if (!validated) {
 
-	std::cout << "Pesel: ";
-	//input >> toFill.pesel; //jeszcze ID, dlaczego do employee lapie bialy znak jak tu nie ma getlinea?
-	std::getline(input, toFill.pesel); 
+			std::cout << "\nNiepoprawne imie! Sprobuj jeszcze raz.\n\n";
+		}
+
+	} while (validated == false);
+	
+	do {
+
+		std::cout << "Nazwisko: ";
+		std::getline(input, toFill.surname);
+
+		validated = IDValidator->validate(toFill.surname);
+
+		if (!validated) {
+
+			std::cout << "\nNiepoprawne nazwisko! Sprobuj jeszcze raz.\n\n";
+		}
+
+	} while (validated == false);
+
+	do {
+
+		std::cout << "Adres: ";
+		std::getline(input, toFill.adress);
+
+		validated = adressValidator->validate(toFill.adress);
+
+		if (!validated) {
+
+			std::cout << "\nNiepoprawny adres! Sprobuj jeszcze raz.\n\n";
+		}
+
+	} while (validated == false);
+
+	do {
+
+		std::cout << "Numer telefonu: ";
+		std::getline(input, toFill.phoneNumber);
+
+		validated = phoneValidator->validate(toFill.phoneNumber);
+
+		if (!validated) {
+
+			std::cout << "\nNiepoprawny numer telefonu! Sprobuj jeszcze raz.\n\n";
+		}
+
+	} while (validated == false);
+
+	do {
+
+		std::cout << "Pesel: ";
+		std::getline(input, toFill.pesel);
+
+		validated = peselValidator->validate(toFill.pesel);
+
+		if (!validated) {
+
+			std::cout << "\nNiepoprawny numer pesel! Sprobuj jeszcze raz.\n\n";
+		}
+
+	} while (validated == false);
+	
+	delete IDValidator;
+	delete adressValidator;
+	delete phoneValidator;
+	delete peselValidator;
 
 	return input;
 }
