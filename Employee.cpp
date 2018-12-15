@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Employee.h"
+#include "Validators.h"
 
 
 Employee::Employee() :
@@ -39,21 +40,61 @@ std::string Employee::getSurname() const {
 
 std::istream& operator>>(std::istream &input, Employee &toFill) {
 
+	Validators* IDValidator = new IDData;
+	Validators* peselValidator = new Pesel;
+
+	bool validated = true;
+
 	input.clear();
 	input.sync();
 
 	std::cout << "\nPodaj swoje dane jako osoby obslugujacej reklamacje: \n\n";
 
-	std::cout << "Imie: ";
-	std::getline(input, toFill.name);
+	do {
 
-	std::cout << "Nazwisko: ";
-	std::getline(input, toFill.surname);
+		std::cout << "Imie: ";
+		std::getline(input, toFill.name);
 
-	std::cout << "Pesel: "; //jeszcze ID
-	//input >> toFill.pesel;
-	std::getline(input, toFill.pesel);
+		validated = IDValidator->validate(toFill.name);
 
+		if (!validated) {
+
+			std::cout << "\nNiepoprawne imie! Sprobuj jeszcze raz.\n\n";
+		}
+
+	} while (validated == false);
+
+	do {
+
+		std::cout << "Nazwisko: ";
+		std::getline(input, toFill.surname);
+
+		validated = IDValidator->validate(toFill.surname);
+
+		if (!validated) {
+
+			std::cout << "\nNiepoprawne nazwisko! Sprobuj jeszcze raz.\n\n";
+		}
+
+	} while (validated == false);
+
+	do {
+
+		std::cout << "Pesel: "; 
+		std::getline(input, toFill.pesel);
+
+		validated = peselValidator->validate(toFill.pesel);
+
+		if (!validated) {
+
+			std::cout << "\nNiepoprawny pesel! Sprobuj jeszcze raz.\n\n";
+		}
+
+	} while (validated == false);
+	
+
+	delete IDValidator;
+	delete peselValidator;
 
 	return input;
 }
