@@ -74,7 +74,14 @@ void Interface::getUsersChoice(int& choice) {
 		 usersComplaint.setDateOfComplaint();
 		 usersComplaint.setStatus(accepted);
 
-	     list.addComplaint(usersComplaint);
+	     if (list.addComplaint(usersComplaint)) {
+		     
+			 std::cout << "\nDodano reklamacje.\n\n";
+	     }
+		 else {
+			 
+			 std::cout << "\nWystapil blad podczas dodawania reklamacji.\n\n";
+		 }
 
 		 system("pause");
 
