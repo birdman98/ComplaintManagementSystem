@@ -73,28 +73,21 @@ bool ListOfComplaints::deleteComplaint(const Complaint* complaintToDelete) {
 
 bool ListOfComplaints::addComplaint(Complaint &complaintToAdd) {
 
-	Complaint* toAdd = new Complaint(complaintToAdd); //konstruktor ustawia next i prev na nullptr
+	Complaint* toAdd = new Complaint(complaintToAdd); 
 
-	this->top = toAdd; 
+	if(this->head == nullptr) {
+		
+		this->head = toAdd;
+		this->top = this->head;
 
-	Complaint* current = head;
-
-	while (current->getNext()->getNext() != nullptr) {
-
-		current = current->getNext();
+		return true;
 	}
 
-	if (head != nullptr) {
+	Complaint* current = this->top;
 
-		current->setNext(toAdd);
-		toAdd->setPrev(current);
-
-	}
-	else {
-
-			this->head = toAdd;
-	}
-	
+	current->setNext(toAdd);
+	toAdd->setPrev(current);
+	this->top = toAdd;
 
 	return true;
 }
