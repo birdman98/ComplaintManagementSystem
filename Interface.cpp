@@ -10,9 +10,9 @@
 int Interface::choice = 0;
 
 
-Interface::Interface()
-{
-	choice = 0;
+Interface::Interface() {
+
+	Interface::choice = 0;
 }
 
 void Interface::printMenu() {
