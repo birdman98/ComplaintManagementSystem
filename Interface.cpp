@@ -109,7 +109,25 @@ void Interface::getUsersChoice(int& choice) {
 
 	 case deleteComplaint: {
 
-		// DeleteComplaint();
+		 std::string toDeleteTitle = "";
+
+		 std::cout << "Podaj tytul reklamacji do usuniecia: ";
+		 std::cin >> toDeleteTitle;
+
+		 Complaint* toDelete = list.findComplaint(toDeleteTitle);
+
+		 if (list.deleteComplaint(toDelete)) {
+
+			 std::cout << "\nUsunieto reklamacje o tytule " << toDeleteTitle << "\n\n";
+
+		 }
+		 else {
+			 
+			 std::cout << "\nNie udalo sie usunac zadanej reklamacji!\n\n";
+		 }
+		  
+
+		 system("pause");
 
 		 break;
 	 }
