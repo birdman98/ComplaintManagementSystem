@@ -23,44 +23,50 @@ ListOfComplaints::ListOfComplaints(Complaint complaint_) {
 	this->top = firstElement;
 }
 
-bool ListOfComplaints::deleteComplaint(const std::string &complaintToDelete) {
+bool ListOfComplaints::deleteComplaint(const Complaint* complaintToDelete) { 
 
-	Complaint* current = head;
 	Complaint* prev = nullptr;
 	Complaint* next = nullptr;
 
-
-	while ((current != nullptr) && (current->getComplaintTitle() != complaintToDelete)) {
-
-		current = current->getNext();
-	}
-
-	if (current == nullptr) {
-
-		std::cout << "Podana reklamacja nie istnieje!\n\n";
+	if(this->head == nullptr) {
+		
+		std::cout << "Brak reklamacji w systemie.\n\n";
 
 		return false;
 	}
 
-	if(current == head) {
+	if (complaintToDelete == nullptr) {
 
-		delete current;
+		std::cout << "\nNie mozna usunac zadanej reklamacji - reklamacja nie istnieje!\n\n";
 
-		head = nullptr;
-		top = nullptr;
-
-		return true;
+		return false;
 	}
 
-	prev = current->getPrev(); 
-	next = current->getNext();
+	if(complaintToDelete == this->head) {
+		
+		this->head = this->head->getNext();
+	}
 
-	prev->setNext(next);
-	next->setPrev(prev);
+	if (complaintToDelete == this->top) {
 
-	delete current;
+		this->top = this->top->getPrev();
+	}
 
-	std::cout << "\nUsunieto reklamacje o tytule " << complaintToDelete << "\n\n";
+	prev = complaintToDelete->getPrev();
+	next = complaintToDelete->getNext();
+		
+	if(prev != nullptr) {
+		
+		prev->setNext(next);
+	}
+
+	if (next != nullptr) {
+
+		next->setPrev(prev);
+	}
+
+
+	delete complaintToDelete;
 
 	return true;
 }
