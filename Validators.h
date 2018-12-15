@@ -9,6 +9,20 @@ public:
 	virtual ~Validators() = default;
 };
 
+class ComplaintTitle : public Validators {
+	
+public:
+
+	bool validate(const std::string &toCheck) override;
+};
+
+class ComplaintedItem : public Validators {
+	
+public:
+
+	bool validate(const std::string &toCheck) override;
+};
+
 class IDData : public Validators {
 	
 public:
