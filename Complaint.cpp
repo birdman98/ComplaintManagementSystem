@@ -45,9 +45,7 @@ void Complaint::setDateOfComplaint() { //https://stackoverflow.com/questions/172
 
 	std::string currentDateAndTime(30, '\0');
 
-	std::strftime(&currentDateAndTime[0], currentDateAndTime.size(), "%Y-%m-%d %H:%M:%S", std::localtime(&now)); //poprawic, zeby nie rzucalo bledu
-
-	//std::strftime(&currentDateAndTime[0], currentDateAndTime.size(), "%Y-%m-%d %H:%M:%S", std::localtime_s(&currentDateAndTime, &now));
+	std::strftime(&currentDateAndTime[0], currentDateAndTime.size(), "%Y-%m-%d %H:%M:%S", std::localtime(&now)); //dodaæ define'a do bledu
 
 	this->dateOfComplaint = currentDateAndTime;
 }

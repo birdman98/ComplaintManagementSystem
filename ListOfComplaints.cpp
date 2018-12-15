@@ -5,8 +5,6 @@
 //TODO:
 //dodaæ wypisywanie wszystkich reklamacji, które nie zosta³y jeszcze rozpatrzone
 //przy starcie programu przypominaæ, ¿e siê koñczy czas na rozpatrzenie jakiejœ reklamacji
-//inicjalizacja pola daty aktualn¹ dat¹ systemow¹
-//przeci¹¿yæ operator wypisywania
 //dodaæ metodê zwracaj¹c¹ iloœæ reklamacji oczekuj¹cych na rozpatrzenie w systemie i ew. zwi¹zane z tym pole statyczne
 
 ListOfComplaints::ListOfComplaints() :

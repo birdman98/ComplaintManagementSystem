@@ -14,7 +14,7 @@ class Complaint {
 	Customer customersData; //ale przy wyœwietlaniu ju¿ po ID
 	Employee employeesData; //tak samo
 	std::string dateOfComplaint;
-	std::string status; //status wybierany z menu, nie wpisywany z palca!
+	std::string status; 
 
 	Complaint* next;
 	Complaint* prev;
