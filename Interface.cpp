@@ -107,6 +107,7 @@ void Interface::getUsersChoice(int& choice) {
 			 std::cout << "Nie znaleziono podanej reklamacji.\n\n";
 		 }
 
+		
 		 system("pause");
 
 		 break;
