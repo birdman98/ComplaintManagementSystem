@@ -27,7 +27,7 @@ public:
 
 	void setComplaintTitle(const std::string &complaintTitle); //te sety s¹ w sumie zbedne, skoro mam operator, jedynie set dla statusu - w interface zrobic menu do tego
 	void setComplaintedItem(const std::string &complaintedItem);
-	void setDateOfComplaint();
+	void setDateOfComplaint(const std::string &date = "auto");
 	void setStatus(const int &statusChoice);
 
 	std::string getComplaintTitle() const;

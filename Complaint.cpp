@@ -41,8 +41,15 @@ void Complaint::setComplaintedItem(const std::string &complaintedItem) {
 	this->complaintedItem = complaintedItem;
 }
 
-void Complaint::setDateOfComplaint() { //https://stackoverflow.com/questions/17223096/outputting-date-and-time-in-c-using-stdchrono
-	
+void Complaint::setDateOfComplaint(const std::string &date) { //https://stackoverflow.com/questions/17223096/outputting-date-and-time-in-c-using-stdchrono
+
+	if(date != "auto") {
+		
+		this->dateOfComplaint = date;
+
+		return;
+	}
+
 	std::time_t now = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
 
 	std::string currentDateAndTime(30, '\0');
