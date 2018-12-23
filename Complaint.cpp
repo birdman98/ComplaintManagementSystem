@@ -91,6 +91,11 @@ void Complaint::setStatus(const int &statusChoice) {
 
 }
 
+void Complaint::setStatus(const std::string &status) {
+	
+	this->status = status;  
+}
+
 std::string Complaint::getComplaintTitle() const {
 
 	return this->complaintTitle;

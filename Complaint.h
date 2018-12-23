@@ -29,6 +29,7 @@ public:
 	void setComplaintedItem(const std::string &complaintedItem);
 	void setDateOfComplaint(const std::string &date = "auto");
 	void setStatus(const int &statusChoice);
+	void setStatus(const std::string &status);
 
 	std::string getComplaintTitle() const;
 	std::string getComplaintedItem() const;
