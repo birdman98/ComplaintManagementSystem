@@ -42,8 +42,10 @@ public:
 	void setNext(Complaint* nextToSet);
 	void setPrev(Complaint* prevToSet);
 
-	friend std::istream& operator>>(std::istream& input, Complaint &toFill);
-	friend std::ostream& operator<<(std::ostream& output, const Complaint &toPrint);
+	friend std::istream& operator>>(std::istream &input, Complaint &toFill);
+	friend std::ostream& operator<<(std::ostream &output, const Complaint &toPrint);
+
+	
 
 	~Complaint(); //potrzebny akurat tutaj??
 };

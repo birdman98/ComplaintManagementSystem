@@ -143,7 +143,7 @@ void Complaint::setPrev(Complaint* prevToSet) {
 Complaint::~Complaint() { 
 }
 
-std::istream & operator>>(std::istream &input, Complaint &toFill) { //czyszczenie wejœcia a¿ do \n
+std::istream& operator>>(std::istream &input, Complaint &toFill) { //czyszczenie wejœcia a¿ do \n
 
 	Validators* titleValidator = new ComplaintTitle; 
 	Validators* itemValidator = new ComplaintedItem;
@@ -193,7 +193,7 @@ std::istream & operator>>(std::istream &input, Complaint &toFill) { //czyszczeni
 	
 }
 
-std::ostream & operator<<(std::ostream & output, const Complaint & toPrint) {
+std::ostream& operator<<(std::ostream &output, const Complaint &toPrint) {
 
 
 	std::cout << "Tytul reklamacji: " << toPrint.complaintTitle << "\n";
@@ -206,3 +206,5 @@ std::ostream & operator<<(std::ostream & output, const Complaint & toPrint) {
 
 	return output;	
 }
+
+
