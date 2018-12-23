@@ -12,43 +12,33 @@ filesSupport::filesSupport(const std::string& inFileName, const std::string& out
     outFileName(outFileName) {
 }
 
-bool filesSupport::saveToFile(const std::string &outFileName) //biblioteka do obs³ugi b³edów plików
-{
+bool filesSupport::saveToFile() const {
+	
 	std::ofstream outFile;
 	
-	outFile.open(outFileName, std::ofstream::out);
+	outFile.open(this->outFileName, std::ofstream::out);
 
-	std::cout << "Podaj prosze tekst do zapisania do pliku: \n\n";
+	if(outFile.fail()) {
 
-	std::string toSave = "";
+		std::cerr << "Blad podczas zapisu do pliku: " << strerror(errno);
+	}
 	
-	std::getline(std::cin, toSave);
 
-	outFile << toSave;
-
-	if (outFile.good())
-	{
-		std::cout << "Zapis udany!\n\n";
-
-		outFile.close();
-		return true;
-
-	}
-	else {
-
-
-		std::cout << "Zapis nieudany!\n\n";
-
-		outFile.close();
-		return false;
-
-	}
+	return true;
 	
 }
 
-bool filesSupport::readFromFile(const std::string &inFileName)
-{
-	//
+bool filesSupport::readFromFile() const {
+	
+	std::ifstream inFile;
 
-	return false;
+	inFile.open(this->inFileName, std::ofstream::in);
+
+	if (inFile.fail()) {
+
+		std::cerr << "Blad podczas otwierania pliku: " << strerror(errno);
+	}
+
+
+	return true;
 }
