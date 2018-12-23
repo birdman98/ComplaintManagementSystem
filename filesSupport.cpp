@@ -7,11 +7,9 @@
 #include <string>
 
 
-filesSupport::filesSupport(const std::string& inFileName, const std::string& outFileName)
-{
-
-	this->inFileName = inFileName;
-	this->outFileName = outFileName;
+filesSupport::filesSupport(const std::string& inFileName, const std::string& outFileName) :
+    inFileName(inFileName),
+    outFileName(outFileName) {
 }
 
 bool filesSupport::saveToFile(const std::string &outFileName) //biblioteka do obs³ugi b³edów plików
