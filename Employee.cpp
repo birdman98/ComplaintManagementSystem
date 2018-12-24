@@ -48,6 +48,16 @@ std::string Employee::getSurname() const {
 	return this->surname;
 }
 
+std::string Employee::getPesel() const {
+	
+	return this->pesel;
+}
+
+std::string Employee::getID() const {
+	
+	return this->employeesID;
+}
+
 std::istream& operator>>(std::istream &input, Employee &toFill) {
 
 	Validators* IDValidator = new IDData;

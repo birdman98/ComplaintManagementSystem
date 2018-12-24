@@ -61,6 +61,26 @@ std::string Customer::getSurname() const {
 	return this->surname;
 }
 
+std::string Customer::getAdress() const {
+	
+	return this->adress;
+}
+
+std::string Customer::getPhoneNumber() const {
+	
+	return this->phoneNumber;
+}
+
+std::string Customer::getPesel() const {
+	
+	return this->pesel;
+}
+
+std::string Customer::getID() const {
+	
+	return this->customersID;
+}
+
 std::istream& operator>>(std::istream &input, Customer &toFill) { //wywo³ywaæ metodê do walidacji danych - regex, exceptions
 
 	Validators* IDValidator = new IDData; 
