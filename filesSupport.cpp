@@ -5,6 +5,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include "Complaint.h"
 
 
 filesSupport::filesSupport(const std::string& inFileName, const std::string& outFileName) :
@@ -22,14 +23,22 @@ bool filesSupport::saveToFile() const {
 
 		std::cerr << "Blad podczas zapisu do pliku: " << strerror(errno);
 	}
-	
+
+
+	outFile.close();
 
 	return true;
 	
 }
 
-bool filesSupport::readFromFile() const {
+bool filesSupport::readFromFile(ListOfComplaints &list) const {
 	
+	Complaint complaint;
+	Customer customer;
+	Employee employee;
+
+	std::string line = "";
+
 	std::ifstream inFile;
 
 	inFile.open(this->inFileName, std::ofstream::in);
@@ -37,8 +46,55 @@ bool filesSupport::readFromFile() const {
 	if (inFile.fail()) {
 
 		std::cerr << "Blad podczas otwierania pliku: " << strerror(errno);
+
+		return false;
 	}
 
+	while(std::getline(inFile, line)) {
+
+		complaint.setComplaintTitle(line);
+
+		std::getline(inFile, line);
+		complaint.setComplaintedItem(line);
+
+		std::getline(inFile, line);
+		complaint.setDateOfComplaint(line);
+
+		std::getline(inFile, line);
+		complaint.setStatus(line);
+
+		std::getline(inFile, line);
+		customer.setName(line);
+
+		std::getline(inFile, line);
+		customer.setSurname(line);
+
+		std::getline(inFile, line);
+		customer.setAdress(line); 
+
+		std::getline(inFile, line);
+		customer.setPhoneNumber(line);
+
+		std::getline(inFile, line);
+		customer.setPesel(line);
+
+		std::getline(inFile, line);
+		employee.setName(line);
+
+		std::getline(inFile, line);
+		employee.setSurname(line);
+
+		std::getline(inFile, line);
+		employee.setPesel(line);
+		
+		complaint.setCustomersData(customer);
+		complaint.setEmployeesData(employee);
+
+		list.addComplaint(complaint);
+
+	}
+
+	inFile.close();
 
 	return true;
 }
