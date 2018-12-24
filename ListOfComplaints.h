@@ -12,6 +12,8 @@ public:
 	ListOfComplaints();
 	ListOfComplaints(Complaint complaint_); 
 
+	Complaint* getHead() const;
+
 	bool deleteComplaint(const Complaint* complaintToDelete);
 	bool addComplaint(Complaint &complaintToAdd);
 	Complaint* findComplaint(const std::string &complaintToFind) const;

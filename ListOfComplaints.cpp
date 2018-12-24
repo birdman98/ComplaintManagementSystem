@@ -21,6 +21,11 @@ ListOfComplaints::ListOfComplaints(Complaint complaint_) {
 	this->top = firstElement;
 }
 
+Complaint* ListOfComplaints::getHead() const {
+	
+	return this->head;
+}
+
 bool ListOfComplaints::deleteComplaint(const Complaint* complaintToDelete) { 
 
 	Complaint* prev = nullptr;
