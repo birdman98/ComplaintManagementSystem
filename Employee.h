@@ -19,6 +19,8 @@ public:
 
 	void setName(const std::string &name);
 	void setSurname(const std::string &surname);
+	void setPesel(const std::string &pesel);
+	void setID(const std::string &id);
 
 	std::string getName() const;
 	std::string getSurname() const;

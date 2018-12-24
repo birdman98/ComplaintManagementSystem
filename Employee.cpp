@@ -28,6 +28,16 @@ void Employee::setSurname(const std::string &surname) {
 	this->surname = surname;
 }
 
+void Employee::setPesel(const std::string &pesel) {
+	
+	this->pesel = pesel;
+}
+
+void Employee::setID(const std::string &id) {
+
+	this->employeesID = id;
+}
+
 std::string Employee::getName() const {
 
 	return this->name;
