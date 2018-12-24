@@ -96,6 +96,16 @@ void Complaint::setStatus(const std::string &status) {
 	this->status = status;  
 }
 
+void Complaint::setCustomersData(const Customer &customersData) {
+	
+	this->customersData = customersData;
+}
+
+void Complaint::setEmployeesData(const Employee &employeesData) {
+	
+	this->employeesData = employeesData;
+}
+
 std::string Complaint::getComplaintTitle() const {
 
 	return this->complaintTitle;

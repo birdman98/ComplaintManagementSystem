@@ -30,6 +30,8 @@ public:
 	void setDateOfComplaint(const std::string &date = "auto");
 	void setStatus(const int &statusChoice);
 	void setStatus(const std::string &status);
+	void setCustomersData(const Customer &customersData);
+	void setEmployeesData(const Employee &employeesData);
 
 	std::string getComplaintTitle() const;
 	std::string getComplaintedItem() const;
