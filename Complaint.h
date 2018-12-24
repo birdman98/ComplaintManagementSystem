@@ -11,8 +11,11 @@ class Complaint {
 
 	std::string complaintTitle;
 	std::string complaintedItem;
+
+public: //póŸniej to lepiej rozwiazac
 	Customer customersData; //ale przy wyœwietlaniu ju¿ po ID
 	Employee employeesData; //tak samo
+private:
 	std::string dateOfComplaint;
 	std::string status; 
 
