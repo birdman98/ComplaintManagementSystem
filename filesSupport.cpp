@@ -13,8 +13,10 @@ filesSupport::filesSupport(const std::string& inFileName, const std::string& out
     outFileName(outFileName) {
 }
 
-bool filesSupport::saveToFile() const {
+bool filesSupport::saveToFile(ListOfComplaints &list) const {
 	
+	Complaint* current = list.getHead();
+
 	std::ofstream outFile;
 	
 	outFile.open(this->outFileName, std::ofstream::out);
@@ -22,6 +24,30 @@ bool filesSupport::saveToFile() const {
 	if(outFile.fail()) {
 
 		std::cerr << "Blad podczas zapisu do pliku: " << strerror(errno);
+
+		return false;
+	}
+
+	while(current != nullptr) {
+
+		outFile << current->getComplaintTitle() << "\n";
+		outFile << current->getComplaintedItem() << "\n";
+		outFile << current->getDateOfComplaint() << "\n";
+		outFile << current->getStatus() << "\n";
+
+		outFile << current->customersData.getName() << "\n";
+		outFile << current->customersData.getSurname() << "\n";
+		outFile << current->customersData.getAdress() << "\n";
+		outFile << current->customersData.getPhoneNumber() << "\n";
+		outFile << current->customersData.getPesel() << "\n";
+
+		outFile << current->employeesData.getName() << "\n";
+		outFile << current->employeesData.getSurname() << "\n";
+		outFile << current->employeesData.getPesel() << "\n";
+		
+
+		
+		current = current->getNext();
 	}
 
 
