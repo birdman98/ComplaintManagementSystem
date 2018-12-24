@@ -31,6 +31,26 @@ void Customer::setSurname(const std::string &surname) {
 	this->surname = surname;
 }
 
+void Customer::setAdress(const std::string &adress) {
+	
+	this->adress = adress;
+}
+
+void Customer::setPhoneNumber(const std::string &phoneNumber) {
+
+	this->phoneNumber = phoneNumber;
+}
+
+void Customer::setPesel(const std::string &pesel) {
+
+	this->pesel = pesel;
+}
+
+void Customer::setID(const std::string &id) {
+
+	this->customersID = id;
+}
+
 std::string Customer::getName() const {
 
 	return this->name;
