@@ -6,9 +6,12 @@
 #include <iostream>
 #include <ctime>
 
+
+//#include <boost/date_time/posix_time/posix_time.hpp>
+
 Complaint::Complaint() : 
 	
-	complaintTitle(""), //czy tu nie powinienem inicjalizowaæ danymi reklamacji, podanymi przez employee?
+	complaintTitle(""), 
     complaintedItem(""), 
 	customersData(), 
 	employeesData(), 
@@ -53,14 +56,14 @@ void Complaint::setDateOfComplaint(const std::string &date) { //https://stackove
 
 	std::string currentDateAndTime(30, '\0');
 
-	std::strftime(&currentDateAndTime[0], currentDateAndTime.size(), "%Y-%m-%d %H:%M:%S", std::localtime(&now)); //dodaæ define'a do bledu
+	std::strftime(&currentDateAndTime[0], currentDateAndTime.size(), "%Y-%m-%d %H:%M:%S", std::localtime(&now)); 
 
 	this->dateOfComplaint = currentDateAndTime;
 }
 
 void Complaint::setStatus(const int &statusChoice) {
 
-	switch(statusChoice) { //pomyœleæ tu o enumach
+	switch(statusChoice) {
 		
 	case accepted: {
 
@@ -125,12 +128,43 @@ std::string Complaint::getDateOfComplaint() const {
 
 	return this->dateOfComplaint;
 }
+//zwracanie czasu oczekiwania w systemie te¿?
+bool Complaint::checkIfNeedsToBeExamined() const { //je¿eli dana reklamacja w przybli¿eniu oczekuje na rozpatrzenie d³u¿ej ni¿ 14 dni to zwracane true
 
-int Complaint::getDuration() const {
+	std::time_t now = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
 
-	//return this->duration; Zaimplementowaæ ró¿nice czasu miêdzy current time a tym zapisanym w polu date
+	std::string currentDateAndTime(30, '\0');
 
-	return NULL;
+	std::strftime(&currentDateAndTime[0], currentDateAndTime.size(), "%Y-%m-%d %H:%M:%S", std::localtime(&now));
+
+	int dayNow = stoi(currentDateAndTime.substr(8, 2));
+	int monthNow = stoi(currentDateAndTime.substr(5, 2));
+	int yearNow = stoi(currentDateAndTime.substr(0, 4));
+	
+	int day = stoi(this->dateOfComplaint.substr(8, 2));
+	int month = stoi(this->dateOfComplaint.substr(5, 2));
+	int year = stoi(this->dateOfComplaint.substr(0, 4));
+
+	int daysFromEnteringComplaint = 0;
+
+	if(yearNow == year) {
+
+		daysFromEnteringComplaint = dayNow - day + (monthNow - month) * 30;
+
+	} else {
+
+		daysFromEnteringComplaint = (yearNow - year - 1) * 365 + (dayNow - day) + (monthNow - month + 12) * 30;
+
+	}
+	
+
+	if(daysFromEnteringComplaint >= almostDeadline) {
+
+		return true;
+	}
+
+	return false;
+	
 }
 
 std::string Complaint::getStatus() const {
@@ -233,5 +267,3 @@ std::ostream& operator<<(std::ostream &output, const Complaint &toPrint) {
 
 	return output;	
 }
-
-

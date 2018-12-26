@@ -7,6 +7,8 @@
 #include <ostream>
 #include <istream>
 
+const int almostDeadline = 14;
+
 class Complaint {
 
 	std::string complaintTitle;
@@ -39,7 +41,7 @@ public:
 	std::string getComplaintTitle() const;
 	std::string getComplaintedItem() const;
 	std::string getDateOfComplaint() const;
-	int getDuration() const; //typ zwracany??
+	bool checkIfNeedsToBeExamined() const; 
 	std::string getStatus() const;
 
 	Complaint* getNext() const;
@@ -57,3 +59,4 @@ public:
 };
 
 enum possibleStatuses { accepted = 1, processing, consideredPositive, consideredNegative, rejected };
+
