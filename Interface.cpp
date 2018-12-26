@@ -87,6 +87,7 @@ void Interface::getUsersChoice(int& choice) {
 
 			 break;
 		 }
+
 	 case searchComplaint: {
 
 		 system("cls");
@@ -111,16 +112,14 @@ void Interface::getUsersChoice(int& choice) {
 		 system("pause");
 
 		 break;
-	 }
-
-	
+	 }	
 
 	 case deleteComplaint: {
 
 		 std::string toDeleteTitle = "";
 
 		 std::cout << "Podaj tytul reklamacji do usuniecia: ";
-		 std::cin >> toDeleteTitle;
+		 std::getline(std::cin, toDeleteTitle);
 
 		 Complaint* toDelete = list.findComplaint(toDeleteTitle);
 
@@ -162,7 +161,7 @@ void Interface::getUsersChoice(int& choice) {
 
 			 Interface::getUsersChoice(statusChoice);
 
-			 if (statusChoice != invalidInput) {
+			 if (statusChoice >= 1 && statusChoice <= 5) {
 
 				 complaintToChange->setStatus(statusChoice);
 
@@ -170,7 +169,7 @@ void Interface::getUsersChoice(int& choice) {
 			 }
 			 else {
 
-				 std::cout << "Nie udalo sie zmienic statusu podanej reklamacji.\n\n";
+				 std::cout << "Nie udalo sie zmienic statusu podanej reklamacji.\nNieprawidlowy wybor statusu.\n\n";
 			 }
 		 }
 
@@ -183,7 +182,6 @@ void Interface::getUsersChoice(int& choice) {
 		 system("cls");
 
 		 list.printComplaints();
-
 
 		 system("pause");
 
@@ -202,14 +200,8 @@ void Interface::getUsersChoice(int& choice) {
 
 		 std::cout<<"Trwa zamykanie programu....\n\n";
 
-		 //saveFromListToFile();
-
-		
-
-
 		 return false;
 
-		// break;
 	 }
 
 	 default: {

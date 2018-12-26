@@ -2,7 +2,6 @@
 #include "Complaint.h"
 #include "Validators.h"
 
-
 #include <chrono>
 #include <iostream>
 #include <ctime>
@@ -64,27 +63,33 @@ void Complaint::setStatus(const int &statusChoice) {
 	switch(statusChoice) { //pomyœleæ tu o enumach
 		
 	case accepted: {
+
 		this->status = "przyjeta";
+
 		break;
 	}
 	case processing: {
 		
 		this->status = "w toku";
+
 		break;
 	}
 	case consideredPositive: {
 		
 		this->status = "rozpatrzona pozytywnie";
+
 		break;
 	}
 	case consideredNegative: {
 
 		this->status = "rozpatrzona negatywnie";
+
 		break;
 	}
 	case rejected: {
 		
 		this->status = "odrzucona";
+
 		break;
 	}
 	}
