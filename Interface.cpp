@@ -17,16 +17,18 @@ Interface::Interface() {
 
 void Interface::printMenu() {
 
-	std::cout << "*******************************************************************************\n";
-	std::cout << "**                                                                           **\n";
-	std::cout << "** 1. Dodaj reklamacje                                                       **\n";
-	std::cout << "** 2. Wyszukaj reklamacje                                                    **\n";
-	std::cout << "** 3. Usun wybrana reklamacje                                                **\n";
-	std::cout << "** 4. Zmien status wybranej reklamacji                                       **\n";
-	std::cout << "** 5. Wyswietl wszystkie reklamacje w systemie                               **\n";
-	std::cout << "** 9. Wyjdz.                                                                 **\n";
-	std::cout << "**                                                                           **\n";
-	std::cout << "*******************************************************************************\n";
+	std::cout << "**********************************************************************************\n";
+	std::cout << "**                                                                              **\n";
+	std::cout << "** 1. Dodaj reklamacje                                                          **\n";
+	std::cout << "** 2. Wyszukaj reklamacje                                                       **\n";
+	std::cout << "** 3. Usun wybrana reklamacje                                                   **\n";
+	std::cout << "** 4. Zmien status wybranej reklamacji                                          **\n";
+	std::cout << "** 5. Wyswietl wszystkie reklamacje w systemie                                  **\n";
+	std::cout << "** 6. Wyswietl wszystkie reklamacje, ktorych termin rozpatrzenia niedlugo mija  **\n";
+	std::cout << "** 7. Wyswietl wszystkie nierozpatrzone reklamacje                              **\n";
+	std::cout << "** 9. Wyjdz.                                                                    **\n";
+	std::cout << "**                                                                              **\n";
+	std::cout << "**********************************************************************************\n";
 
 }
 
@@ -184,6 +186,30 @@ void Interface::getUsersChoice(int& choice) {
 		 list.printComplaints();
 
 		 system("pause");
+
+		 break;
+	 }
+
+	 case displayComplaintsNearDeadline: { 
+		 
+		 system("cls");
+
+		 list.printComplaintsNearDeadline();
+
+		 system("pause");
+
+
+		 break;
+	 }
+
+	 case displayUnexaminedComplaints: {
+
+		 system("cls");
+
+		 list.printUnexaminedComplaints();
+
+		 system("pause");
+
 
 		 break;
 	 }

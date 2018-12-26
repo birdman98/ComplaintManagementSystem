@@ -149,17 +149,53 @@ void ListOfComplaints::printUnexaminedComplaints() const {
 
 	Complaint* current = this->head;
 
+	bool anyComplaint = false;
+
 	while(current != nullptr) {
 		
-		if((current->getStatus() == "zgloszone") || (current->getStatus() == "w toku")) {
+		if((current->getStatus() == "przyjeta") || (current->getStatus() == "w toku")) {
 			
-			//std::cout << *current << "\n____________________________\n";
+			std::cout << *current;
+
+			anyComplaint = true;
 		}
 
 		current = current->getNext();
 	}
+
+	if(!anyComplaint) {
+		
+		std::cout << "Aktualnie brak reklamacji oczekujacych na rozpatrzenie.\n\n";
+	}
 }
 
+void ListOfComplaints::printComplaintsNearDeadline() const {
+	
+	Complaint* current = this->head;
+
+	int duration = 0;
+	bool anyComplaint = false;
+
+	while (current != nullptr) {
+
+		if (current->checkIfNeedsToBeExamined(duration)) {
+
+			std::cout << *current;
+			std::cout << "\n\nDni, ktore minely od zlozenia reklamacji w (przyblizeniu): " << duration << "\n\n";
+
+			anyComplaint = true;
+		}
+
+		current = current->getNext();
+
+	}
+
+	if(!anyComplaint) {
+		
+		std::cout << "Aktualnie termin rozpatrzenia zadnej z reklamacji sie nie zbliza.\n\n";
+	}
+	
+}
 
 ListOfComplaints::~ListOfComplaints() {
 
