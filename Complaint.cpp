@@ -129,7 +129,7 @@ std::string Complaint::getDateOfComplaint() const {
 	return this->dateOfComplaint;
 }
 //zwracanie czasu oczekiwania w systemie te¿?
-bool Complaint::checkIfNeedsToBeExamined() const { //je¿eli dana reklamacja w przybli¿eniu oczekuje na rozpatrzenie d³u¿ej ni¿ 14 dni to zwracane true
+bool Complaint::checkIfNeedsToBeExamined(int &durationInDays) const { //je¿eli dana reklamacja w przybli¿eniu oczekuje na rozpatrzenie d³u¿ej ni¿ 14 dni to zwracane true
 
 	std::time_t now = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
 
@@ -145,20 +145,19 @@ bool Complaint::checkIfNeedsToBeExamined() const { //je¿eli dana reklamacja w pr
 	int month = stoi(this->dateOfComplaint.substr(5, 2));
 	int year = stoi(this->dateOfComplaint.substr(0, 4));
 
-	int daysFromEnteringComplaint = 0;
 
 	if(yearNow == year) {
 
-		daysFromEnteringComplaint = dayNow - day + (monthNow - month) * 30;
+		durationInDays = dayNow - day + (monthNow - month) * 30;
 
 	} else {
 
-		daysFromEnteringComplaint = (yearNow - year - 1) * 365 + (dayNow - day) + (monthNow - month + 12) * 30;
+		durationInDays = (yearNow - year - 1) * 365 + (dayNow - day) + (monthNow - month + 12) * 30;
 
 	}
 	
 
-	if(daysFromEnteringComplaint >= almostDeadline) {
+	if(durationInDays >= almostDeadline) {
 
 		return true;
 	}

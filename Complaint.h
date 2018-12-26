@@ -41,7 +41,7 @@ public:
 	std::string getComplaintTitle() const;
 	std::string getComplaintedItem() const;
 	std::string getDateOfComplaint() const;
-	bool checkIfNeedsToBeExamined() const; 
+	bool checkIfNeedsToBeExamined(int &durationInDays) const; 
 	std::string getStatus() const;
 
 	Complaint* getNext() const;
