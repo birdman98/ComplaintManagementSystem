@@ -6,6 +6,7 @@
 #include <iostream>
 #include <string>
 #include "Complaint.h"
+#include "DataGuard.h"
 
 
 filesSupport::filesSupport(const std::string& inFileName, const std::string& outFileName) :
@@ -37,13 +38,13 @@ bool filesSupport::saveToFile(ListOfComplaints &list) const {
 
 		outFile << current->customersData.getName() << "\n";
 		outFile << current->customersData.getSurname() << "\n";
-		outFile << current->customersData.getAdress() << "\n";
-		outFile << current->customersData.getPhoneNumber() << "\n";
-		outFile << current->customersData.getPesel() << "\n";
+		outFile << DataGuard::encryptData(current->customersData.getAdress()) << "\n";
+		outFile << DataGuard::encryptData(current->customersData.getPhoneNumber()) << "\n";
+		outFile << DataGuard::encryptData(current->customersData.getPesel()) << "\n";
 
 		outFile << current->employeesData.getName() << "\n";
 		outFile << current->employeesData.getSurname() << "\n";
-		outFile << current->employeesData.getPesel() << "\n";
+		outFile << DataGuard::encryptData(current->employeesData.getPesel()) << "\n";
 		
 
 		
@@ -96,13 +97,13 @@ bool filesSupport::readFromFile(ListOfComplaints &list) const {
 		customer.setSurname(line);
 
 		std::getline(inFile, line);
-		customer.setAdress(line); 
+		customer.setAdress(DataGuard::decryptData(line)); 
 
 		std::getline(inFile, line);
-		customer.setPhoneNumber(line);
+		customer.setPhoneNumber(DataGuard::decryptData(line));
 
 		std::getline(inFile, line);
-		customer.setPesel(line);
+		customer.setPesel(DataGuard::decryptData(line));
 
 		std::getline(inFile, line);
 		employee.setName(line);
@@ -111,7 +112,7 @@ bool filesSupport::readFromFile(ListOfComplaints &list) const {
 		employee.setSurname(line);
 
 		std::getline(inFile, line);
-		employee.setPesel(line);
+		employee.setPesel(DataGuard::decryptData(line));
 		
 		complaint.setCustomersData(customer);
 		complaint.setEmployeesData(employee);
