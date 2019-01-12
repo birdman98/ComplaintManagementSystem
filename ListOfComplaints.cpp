@@ -197,6 +197,21 @@ void ListOfComplaints::printComplaintsNearDeadline() const {
 	
 }
 
+int ListOfComplaints::listsSize() const {
+
+	Complaint* current = this->head;
+	int size = 0;
+
+	while(current != nullptr) {
+		
+		++size;
+
+		current = current->getNext();
+	}
+
+	return size;
+}
+
 ListOfComplaints::~ListOfComplaints() {
 
 	Complaint* toDelete = this->head; 
