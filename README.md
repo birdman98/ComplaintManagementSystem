@@ -13,8 +13,7 @@ Files name should be passed with their extensions (e.g. .txt).
 inputFileName is a name of file, where list of complaints is storaged and outputFileName is a name of file, where list of complaints after 
 using it in program will be saved.
 
-Default file both for input and output is 
-### config.txt
+Default file both for input and output is **config.txt**
 
 ## Built with
    * **C++** - programming language
