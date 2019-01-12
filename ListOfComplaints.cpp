@@ -215,15 +215,24 @@ int ListOfComplaints::listsSize() const {
 void ListOfComplaints::printEmployeesComplaints(const std::string &employeesPesel) const {
 
 	Complaint* current = this->head;
+	bool anyComplaint = false;
 
 	while(current != nullptr) {
 		
 		if(current->employeesData.getPesel() == employeesPesel) {
 			
-			std::cout << current;
+			std::cout << *current << "\n\n";
+			std::cout << "__________________________________________________\n\n";
+
+			anyComplaint = true;
 		}
 
 		current = current->getNext();
+	}
+
+	if(!anyComplaint) {
+		
+		std::cout << "Aktualnie w systemie nie ma zadnych obslugiwanych przez ciebie reklamacji.\n\n";
 	}
 }
 
