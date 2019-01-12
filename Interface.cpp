@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Interface.h"
 #include "Complaint.h"
+#include "Validators.h"
 
 #include <string>
 #include <iostream>
@@ -35,6 +36,7 @@ void Interface::printMenu(const ListOfComplaints &list) {
 	std::cout << "** 5. Wyswietl wszystkie reklamacje w systemie                                  **\n";
 	std::cout << "** 6. Wyswietl wszystkie reklamacje, ktorych termin rozpatrzenia niedlugo mija  **\n";
 	std::cout << "** 7. Wyswietl wszystkie nierozpatrzone reklamacje                              **\n";
+	std::cout << "** 8. Wyswietl wszystkie reklamacje przyjete przez danego pracownika            **\n";
 	std::cout << "** 9. Wyjdz.                                                                    **\n";
 	std::cout << "**                                                                              **\n";
 	std::cout << "**********************************************************************************\n";
@@ -126,6 +128,8 @@ void Interface::getUsersChoice(int& choice) {
 	 }	
 
 	 case deleteComplaint: {
+
+		 system("cls");
 
 		 std::string toDeleteTitle = "";
 
@@ -225,7 +229,34 @@ void Interface::getUsersChoice(int& choice) {
 
 	 case employeesComplaints: {
 
-		// employeesComplaints();
+		 system("cls");
+
+		 Validators* peselValidator = new Pesel;
+		 bool validated = false;
+
+		 std::string employeesPesel = "";
+
+		 std::cout << "By wyswietlic wszystkie obslugiwane przez ciebie reklamacje podaj swoj pesel.\n\n";
+
+		 do {
+
+			 std::cout << "Pesel: ";
+			 std::getline(std::cin, employeesPesel);
+
+			 validated = peselValidator->validate(employeesPesel);
+
+			 if (!validated) {
+
+				 std::cout << "\nNiepoprawny pesel! Sprobuj jeszcze raz.\n\n";
+			 }
+			 			 
+		 } while (validated == false);
+
+		 std::cout << "\n\n";
+
+		 list.printEmployeesComplaints(employeesPesel);
+
+		 std::cout << "\n\n";
 
 		 system("pause");
 
