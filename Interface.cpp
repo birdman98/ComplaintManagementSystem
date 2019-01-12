@@ -15,7 +15,16 @@ Interface::Interface() {
 	Interface::choice = 0;
 }
 
-void Interface::printMenu() {
+void Interface::printMenu(const ListOfComplaints &list) {
+
+	setConsoleColor(important_info);
+
+	
+	std::cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
+	std::cout << " ++        Liczba reklamacji znajdujacych sie aktualnie w systemie: " << list.listsSize() << "             ++ \n";
+	std::cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n\n";
+
+	setConsoleColor(default_color);
 
 	std::cout << "**********************************************************************************\n";
 	std::cout << "**                                                                              **\n";
@@ -56,7 +65,7 @@ void Interface::getUsersChoice(int& choice) {
 
 	 system("cls");
 
-	 printMenu();
+	 printMenu(list);
 
 
 	getUsersChoice(choice);
@@ -241,4 +250,14 @@ void Interface::getUsersChoice(int& choice) {
 	 }
 
 	 return true;
+ }
+
+ void setConsoleColor(const int &color)  {
+
+	 HANDLE  hConsole;
+
+	 hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	 SetConsoleTextAttribute(hConsole, color);	
+		
  }

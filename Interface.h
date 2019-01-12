@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ListOfComplaints.h"
+#include <Windows.h>
 
 const int invalidInput = 99;
 
@@ -15,8 +16,12 @@ public:
 	Interface();
 	//~Interface();
 
-	static void printMenu();
+	static void printMenu(const ListOfComplaints &list);
     static void getUsersChoice(int& choice);
 	static bool menu(ListOfComplaints &list);
 };
+
+enum colors {black, blue, green, red = 4, default_color = 7, important_info = 160};
+
+void setConsoleColor(const int &color);
 
