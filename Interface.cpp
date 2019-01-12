@@ -114,7 +114,7 @@ void Interface::getUsersChoice(int& choice) {
 
 		 if(foundComplaint) {
 			 
-			 std::cout << *foundComplaint << "\n\n";
+			 std::cout << "\n\n" << *foundComplaint << "\n\n";
 		 }
 		 else {
 			 
@@ -169,22 +169,22 @@ void Interface::getUsersChoice(int& choice) {
 
 			 int statusChoice = 0;
 
-			 std::cout << "Obecny status reklamacji o tytule: " << complaintToChange->getComplaintTitle() << " : " << complaintToChange->getStatus() << "\n\n";
+			 std::cout << "\n\nObecny status reklamacji o tytule: " << complaintToChange->getComplaintTitle() << " : " << complaintToChange->getStatus() << "\n\n";
 
 			 std::cout << "Wybierz na jaki status chcesz zmienic obecny status reklamacji:\n";
 			 std::cout << "1. Przyjeta,\n2. W toku,\n3. Rozpatrzona pozytywnie,\n4. Rozpatrzona negatywnie,\n5. Odrzucona.\n\n";
 
 			 Interface::getUsersChoice(statusChoice);
 
-			 if (statusChoice >= 1 && statusChoice <= 5) {
+			 if (statusChoice >= 1 && statusChoice <= 5) { //brzydko!!
 
 				 complaintToChange->setStatus(statusChoice);
 
-				 std::cout << "Status zostal zmieniony poprawnie.\n\n";
+				 std::cout << "\n\nStatus zostal zmieniony poprawnie.\n\n";
 			 }
 			 else {
 
-				 std::cout << "Nie udalo sie zmienic statusu podanej reklamacji.\nNieprawidlowy wybor statusu.\n\n";
+				 std::cout << "\n\nNie udalo sie zmienic statusu podanej reklamacji.\nNieprawidlowy wybor statusu.\n\n";
 			 }
 		 }
 

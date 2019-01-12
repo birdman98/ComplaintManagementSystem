@@ -120,7 +120,7 @@ Complaint* ListOfComplaints::findComplaint(const std::string &complaintToFind) c
 	return current;
 }
 
-void ListOfComplaints::sortComplaintsBy(const int &sortByChoice) const {
+void ListOfComplaints::sortComplaintsBy(const int &sortByChoice) const { //usunac
 
 	std::cout << "Funkcjonalnosc w trakcie budowy\n\n";
 }
@@ -156,6 +156,7 @@ void ListOfComplaints::printUnexaminedComplaints() const {
 		if((current->getStatus() == "przyjeta") || (current->getStatus() == "w toku")) {
 			
 			std::cout << *current;
+			std::cout << "\n\n______________________________________________\n\n";
 
 			anyComplaint = true;
 		}
@@ -182,6 +183,7 @@ void ListOfComplaints::printComplaintsNearDeadline() const {
 
 			std::cout << *current;
 			std::cout << "\n\nDni, ktore minely od zlozenia reklamacji w (przyblizeniu): " << duration << "\n\n";
+			std::cout << "_____________________________________________________________________\n\n";
 
 			anyComplaint = true;
 		}
