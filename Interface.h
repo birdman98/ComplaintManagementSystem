@@ -2,6 +2,7 @@
 
 #include "ListOfComplaints.h"
 #include <Windows.h>
+#include "filesSupport.h"
 
 const int invalidInput = 99;
 
@@ -18,7 +19,7 @@ public:
 
 	static void printMenu(const ListOfComplaints &list);
     static void getUsersChoice(int& choice);
-	static bool menu(ListOfComplaints &list);
+	static bool menu(ListOfComplaints &list, filesSupport &file);
 };
 
 enum colors {black, blue, green, red = 4, default_color = 7, important_info = 160};

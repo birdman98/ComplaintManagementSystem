@@ -63,7 +63,7 @@ void Interface::getUsersChoice(int& choice) {
 
 }
 
- bool Interface::menu(ListOfComplaints &list) {
+ bool Interface::menu(ListOfComplaints &list, filesSupport &file) {
 
 	 system("cls");
 
@@ -90,6 +90,8 @@ void Interface::getUsersChoice(int& choice) {
 	     if (list.addComplaint(usersComplaint)) {
 		     
 			 std::cout << "\nDodano reklamacje.\n\n";
+
+			 file.saveToFile(list);
 	     }
 		 else {
 			 
@@ -141,6 +143,8 @@ void Interface::getUsersChoice(int& choice) {
 		 if (list.deleteComplaint(toDelete)) {
 
 			 std::cout << "\nUsunieto reklamacje o tytule " << toDeleteTitle << "\n\n";
+
+			 file.saveToFile(list);
 
 		 }
 		 else {
