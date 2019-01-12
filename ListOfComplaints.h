@@ -20,8 +20,9 @@ public:
 	void sortComplaintsBy(const int &sortByChoice) const;
 	void printComplaints() const;
 	void printUnexaminedComplaints() const;
-	void /*ListOfComplaints::*/printComplaintsNearDeadline() const;
+	void printComplaintsNearDeadline() const;
 	int listsSize() const;
+	void printEmployeesComplaints(const std::string &employeesPesel) const;
 
 	~ListOfComplaints();
 };

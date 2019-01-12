@@ -212,6 +212,21 @@ int ListOfComplaints::listsSize() const {
 	return size;
 }
 
+void ListOfComplaints::printEmployeesComplaints(const std::string &employeesPesel) const {
+
+	Complaint* current = this->head;
+
+	while(current != nullptr) {
+		
+		if(current->employeesData.getPesel() == employeesPesel) {
+			
+			std::cout << current;
+		}
+
+		current = current->getNext();
+	}
+}
+
 ListOfComplaints::~ListOfComplaints() {
 
 	Complaint* toDelete = this->head; 
