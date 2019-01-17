@@ -20,11 +20,19 @@ void Interface::printMenu(const ListOfComplaints &list) {
 
 	setConsoleColor(important_info);
 
+	int complaintsNearDeadlineCount = list.complaintsNearDeadlineCount();
 	
 	std::cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
 	std::cout << "++        Liczba reklamacji znajdujacych sie aktualnie w systemie: " << list() << "               ++\n";
 	std::cout << " ++                                                                               ++ \n";
-	std::cout << "++      Liczba reklamacji, ktorych termin rozpatrzenia sie zbliza: " << list.complaintsNearDeadlineCount() << "               ++\n";
+
+	if (complaintsNearDeadlineCount) {
+		std::cout << "++ Liczba reklamacji, ktorych termin rozpatrzenia sie zbliza: " << complaintsNearDeadlineCount << " (wybierz z menu 6) ++\n";
+	} else {
+
+		std::cout << "++        Liczba reklamacji, ktorych termin rozpatrzenia sie zbliza: " << complaintsNearDeadlineCount << "             ++\n";
+	}
+
 	std::cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n\n";
 
 	setConsoleColor(default_color);
@@ -174,7 +182,7 @@ void Interface::getUsersChoice(int& choice) {
 
 			 getUsersChoice(statusChoice);
 
-			 if (statusChoice >= 1 && statusChoice <= 5) { 
+			 if (statusChoice >= accepted && statusChoice <= rejected) { 
 
 				 complaintToChange->setStatus(statusChoice);
 
@@ -184,6 +192,9 @@ void Interface::getUsersChoice(int& choice) {
 
 				 std::cout << "\n\nNie udalo sie zmienic statusu podanej reklamacji.\nNieprawidlowy wybor statusu.\n\n";
 			 }
+		 } else {
+			 
+			 std::cout << "\n\nReklamacja o podanym tytule nie istnieje!\n\nOperacja nie powiodla sie, sprobuj ponownie.\n\n";
 		 }
 
 		 system("pause");
