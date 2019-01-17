@@ -21,8 +21,9 @@ public:
 	void printComplaints() const;
 	void printUnexaminedComplaints() const;
 	void printComplaintsNearDeadline() const;
-	int listsSize() const;
 	void printEmployeesComplaints(const std::string &employeesPesel) const;
+
+	int operator() () const; 
 
 	~ListOfComplaints();
 };

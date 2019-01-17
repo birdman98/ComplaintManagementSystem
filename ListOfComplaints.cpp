@@ -199,21 +199,6 @@ void ListOfComplaints::printComplaintsNearDeadline() const {
 	
 }
 
-int ListOfComplaints::listsSize() const {
-
-	Complaint* current = this->head;
-	int size = 0;
-
-	while(current != nullptr) {
-		
-		++size;
-
-		current = current->getNext();
-	}
-
-	return size;
-}
-
 void ListOfComplaints::printEmployeesComplaints(const std::string &employeesPesel) const {
 
 	Complaint* current = this->head;
@@ -236,6 +221,21 @@ void ListOfComplaints::printEmployeesComplaints(const std::string &employeesPese
 		
 		std::cout << "Aktualnie w systemie nie ma zadnych obslugiwanych przez ciebie reklamacji.\n\n";
 	}
+}
+
+int ListOfComplaints::operator()() const {
+	
+	Complaint* current = this->head;
+	int size = 0;
+
+	while (current != nullptr) {
+
+		++size;
+
+		current = current->getNext();
+	}
+
+	return size;
 }
 
 ListOfComplaints::~ListOfComplaints() {
