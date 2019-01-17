@@ -22,7 +22,7 @@ void Interface::printMenu(const ListOfComplaints &list) {
 
 	
 	std::cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
-	std::cout << " ++        Liczba reklamacji znajdujacych sie aktualnie w systemie: " << list.listsSize() << "             ++ \n";
+	std::cout << " ++        Liczba reklamacji znajdujacych sie aktualnie w systemie: " << list() << "             ++ \n";
 	std::cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n\n";
 
 	setConsoleColor(default_color);
