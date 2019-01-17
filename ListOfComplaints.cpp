@@ -185,6 +185,26 @@ void ListOfComplaints::printEmployeesComplaints(const std::string &employeesPese
 	}
 }
 
+int ListOfComplaints::complaintsNearDeadlineCount() const {
+	
+	Complaint* current = this->head;
+
+	int nearDeadlineCount = 0;
+	int duration = 0;
+
+	while (current != nullptr) {
+
+		if (current->checkIfNeedsToBeExamined(duration)) {
+
+			++nearDeadlineCount;			
+		}
+
+		current = current->getNext();
+	}
+
+	return nearDeadlineCount;
+}
+
 int ListOfComplaints::operator()() const {
 	
 	Complaint* current = this->head;

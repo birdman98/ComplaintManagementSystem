@@ -21,6 +21,7 @@ public:
 	void printComplaints() const;
 	void printUnexaminedComplaints() const;
 	void printEmployeesComplaints(const std::string &employeesPesel) const;
+	int complaintsNearDeadlineCount() const;
 
 	int operator() () const; //zwraca iloœæ reklamacji w systemie
 	void operator! () const; //wypisuje reklamacje, których termin rozpatrzenia siê zbli¿a
