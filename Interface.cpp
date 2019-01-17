@@ -211,7 +211,7 @@ void Interface::getUsersChoice(int& choice) {
 		 
 		 system("cls");
 
-		 list.printComplaintsNearDeadline();
+		 !list;
 
 		 system("pause");
 
