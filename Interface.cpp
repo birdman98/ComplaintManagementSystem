@@ -140,7 +140,7 @@ void Interface::getUsersChoice(int& choice) {
 
 		 Complaint* toDelete = list.findComplaint(toDeleteTitle);
 
-		 if (list.deleteComplaint(toDelete)) {
+		 if (list-(toDelete)) {
 
 			 std::cout << "\nUsunieto reklamacje o tytule " << toDeleteTitle << "\n\n";
 
