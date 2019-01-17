@@ -20,10 +20,10 @@ public:
 	void sortComplaintsBy(const int &sortByChoice) const;
 	void printComplaints() const;
 	void printUnexaminedComplaints() const;
-	void printComplaintsNearDeadline() const;
 	void printEmployeesComplaints(const std::string &employeesPesel) const;
 
-	int operator() () const; 
+	int operator() () const; //zwraca iloœæ reklamacji w systemie
+	void operator! () const; //wypisuje reklamacje, których termin rozpatrzenia siê zbli¿a
 
 	~ListOfComplaints();
 };

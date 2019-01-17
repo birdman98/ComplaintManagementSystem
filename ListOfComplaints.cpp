@@ -170,35 +170,6 @@ void ListOfComplaints::printUnexaminedComplaints() const {
 	}
 }
 
-void ListOfComplaints::printComplaintsNearDeadline() const {
-	
-	Complaint* current = this->head;
-
-	int duration = 0;
-	bool anyComplaint = false;
-
-	while (current != nullptr) {
-
-		if (current->checkIfNeedsToBeExamined(duration)) {
-
-			std::cout << *current;
-			std::cout << "\n\nDni, ktore minely od zlozenia reklamacji w (przyblizeniu): " << duration << "\n\n";
-			std::cout << "_____________________________________________________________________\n\n";
-
-			anyComplaint = true;
-		}
-
-		current = current->getNext();
-
-	}
-
-	if(!anyComplaint) {
-		
-		std::cout << "Aktualnie termin rozpatrzenia zadnej z reklamacji sie nie zbliza.\n\n";
-	}
-	
-}
-
 void ListOfComplaints::printEmployeesComplaints(const std::string &employeesPesel) const {
 
 	Complaint* current = this->head;
@@ -236,6 +207,36 @@ int ListOfComplaints::operator()() const {
 	}
 
 	return size;
+}
+
+void ListOfComplaints::operator!() const {
+
+	Complaint* current = this->head;
+
+	int duration = 0;
+	bool anyComplaint = false;
+
+	while (current != nullptr) {
+
+		if (current->checkIfNeedsToBeExamined(duration)) {
+
+			std::cout << *current;
+			std::cout << "\n\nDni, ktore minely od zlozenia reklamacji w (przyblizeniu): " << duration << "\n\n";
+			std::cout << "_____________________________________________________________________\n\n";
+
+			anyComplaint = true;
+		}
+
+		current = current->getNext();
+
+	}
+
+	if (!anyComplaint) {
+
+		std::cout << "Aktualnie termin rozpatrzenia zadnej z reklamacji sie nie zbliza.\n\n";
+	}
+
+
 }
 
 ListOfComplaints::~ListOfComplaints() {
