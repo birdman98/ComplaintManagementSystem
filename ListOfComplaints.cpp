@@ -26,7 +26,7 @@ Complaint* ListOfComplaints::getHead() const {
 	return this->head;
 }
 
-bool ListOfComplaints::deleteComplaint(const Complaint* complaintToDelete) { 
+bool ListOfComplaints::operator-(const Complaint* complaintToDelete) { 
 
 	Complaint* prev = nullptr;
 	Complaint* next = nullptr;

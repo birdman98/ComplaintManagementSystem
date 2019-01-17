@@ -14,8 +14,8 @@ public:
 
 	Complaint* getHead() const;
 
-	bool deleteComplaint(const Complaint* complaintToDelete);
-	bool operator+ (Complaint &complaintToAdd); //dodaje reklamacje do listy
+	bool operator-(const Complaint* complaintToDelete); //usuwa reklamacje z listy
+	bool operator+ (Complaint &complaintToAdd); //dodaje reklamacje do listy //czy tu nie moze byc const??
 	Complaint* findComplaint(const std::string &complaintToFind) const;
 	void sortComplaintsBy(const int &sortByChoice) const;
 	void printComplaints() const;
