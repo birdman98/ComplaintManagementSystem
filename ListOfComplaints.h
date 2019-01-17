@@ -15,7 +15,7 @@ public:
 	Complaint* getHead() const;
 
 	bool deleteComplaint(const Complaint* complaintToDelete);
-	bool addComplaint(Complaint &complaintToAdd);
+	bool operator+ (Complaint &complaintToAdd); //dodaje reklamacje do listy
 	Complaint* findComplaint(const std::string &complaintToFind) const;
 	void sortComplaintsBy(const int &sortByChoice) const;
 	void printComplaints() const;
@@ -24,6 +24,7 @@ public:
 
 	int operator() () const; //zwraca iloœæ reklamacji w systemie
 	void operator! () const; //wypisuje reklamacje, których termin rozpatrzenia siê zbli¿a
+	
 
 	~ListOfComplaints();
 };

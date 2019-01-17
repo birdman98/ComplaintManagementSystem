@@ -74,19 +74,19 @@ bool ListOfComplaints::deleteComplaint(const Complaint* complaintToDelete) {
 	return true;
 }
 
-bool ListOfComplaints::addComplaint(Complaint &complaintToAdd) {
+bool ListOfComplaints::operator+(Complaint &complaintToAdd) {
 
-	if(this->findComplaint(complaintToAdd.getComplaintTitle()) != nullptr) {
-		
+	if (this->findComplaint(complaintToAdd.getComplaintTitle()) != nullptr) {
+
 		std::cout << "\nReklamacja o podanym tytule juz istnieje!\n\n";
 
 		return false;
 	}
 
-	Complaint* toAdd = new Complaint(complaintToAdd); 
+	Complaint* toAdd = new Complaint(complaintToAdd);
 
-	if(this->head == nullptr) {
-		
+	if (this->head == nullptr) {
+
 		this->head = toAdd;
 		this->top = this->head;
 
