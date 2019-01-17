@@ -87,7 +87,7 @@ void Interface::getUsersChoice(int& choice) {
 		 usersComplaint.setDateOfComplaint();
 		 usersComplaint.setStatus(accepted);
 
-	     if (list.addComplaint(usersComplaint)) {
+	     if (list+(usersComplaint)) {
 		     
 			 std::cout << "\nDodano reklamacje.\n\n";
 
