@@ -2,24 +2,7 @@
 #include "Customer.h"
 #include "Validators.h"
 
-
-Customer::Customer() :
-
-	name(""),
-	surname(""),
-    adress(""),
-    phoneNumber(""),
-    pesel(""),
-    customersID("") {
-}
-
-Customer::Customer(const std::string &name_, const std::string &surname_) : //argumenty dla reszty pól
-
-	name(name_),
-	surname(surname_) {
-
-	//this->customersID = makeIDForUser();
-}
+#include <iostream>
 
 void Customer::setName(const std::string &name) {
 
@@ -44,11 +27,6 @@ void Customer::setPhoneNumber(const std::string &phoneNumber) {
 void Customer::setPesel(const std::string &pesel) {
 
 	this->pesel = pesel;
-}
-
-void Customer::setID(const std::string &id) {
-
-	this->customersID = id;
 }
 
 std::string Customer::getName() const {
@@ -76,12 +54,7 @@ std::string Customer::getPesel() const {
 	return this->pesel;
 }
 
-std::string Customer::getID() const {
-	
-	return this->customersID;
-}
-
-std::istream& operator>>(std::istream &input, Customer &toFill) { //wywo³ywaæ metodê do walidacji danych - regex, exceptions
+std::istream& operator>>(std::istream &input, Customer &toFill) { 
 
 	Validators* IDValidator = new IDData; 
 	Validators* adressValidator = new Adress;
@@ -175,22 +148,17 @@ std::istream& operator>>(std::istream &input, Customer &toFill) { //wywo³ywaæ me
 
 std::ostream & operator<<(std::ostream &output, const Customer &toPrint) {
 	
-	std::cout << "\nDane osoby skladajacej reklamacje: \n\n";
+	output << "\nDane osoby skladajacej reklamacje: \n\n";
 
-	std::cout << "Imie: ";
-	output << toPrint.name;
+	output << "Imie: " << toPrint.name;
 
-	std::cout << "\nNazwisko: ";
-	output << toPrint.surname;
+	output << "\nNazwisko: " << toPrint.surname;
+	
+	output << "\nAdres: " << toPrint.adress;
 
-	std::cout << "\nAdres: ";
-	output << toPrint.adress;
+	output << "\nNumer telefonu: " << toPrint.phoneNumber;
 
-	std::cout << "\nNumer telefonu: ";
-	output << toPrint.phoneNumber;
-
-	std::cout << "\nPesel: ";
-	output << toPrint.pesel; //jeszcze ID
+	output << "\nPesel: " << toPrint.pesel;
 
 	return output;
 }

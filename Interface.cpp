@@ -13,7 +13,7 @@ int Interface::choice = 0;
 
 Interface::Interface() {
 
-	Interface::choice = 0;
+	choice = 0;
 }
 
 void Interface::printMenu(const ListOfComplaints &list) {
@@ -55,22 +55,17 @@ void Interface::getUsersChoice(int& choice) {
 			std::cin.clear();
 
 			choice = invalidInput;
-
-	    }
-			
+	    }			
 
 	std::cin.ignore((std::numeric_limits<std::streamsize>::max)(), '\n');
-
 }
 
  bool Interface::menu(ListOfComplaints &list, filesSupport &file) {
 
 	 system("cls");
-
 	 printMenu(list);
 
-
-	getUsersChoice(choice);
+	 getUsersChoice(choice);
 
 	 switch (choice) {
 
@@ -122,7 +117,6 @@ void Interface::getUsersChoice(int& choice) {
 			 
 			 std::cout << "Nie znaleziono podanej reklamacji.\n\n";
 		 }
-
 		
 		 system("pause");
 
@@ -145,14 +139,12 @@ void Interface::getUsersChoice(int& choice) {
 			 std::cout << "\nUsunieto reklamacje o tytule " << toDeleteTitle << "\n\n";
 
 			 file.saveToFile(list);
-
 		 }
 		 else {
 			 
 			 std::cout << "\nNie udalo sie usunac zadanej reklamacji!\n\n";
 		 }
 		  
-
 		 system("pause");
 
 		 break;
@@ -178,9 +170,9 @@ void Interface::getUsersChoice(int& choice) {
 			 std::cout << "Wybierz na jaki status chcesz zmienic obecny status reklamacji:\n";
 			 std::cout << "1. Przyjeta,\n2. W toku,\n3. Rozpatrzona pozytywnie,\n4. Rozpatrzona negatywnie,\n5. Odrzucona.\n\n";
 
-			 Interface::getUsersChoice(statusChoice);
+			 getUsersChoice(statusChoice);
 
-			 if (statusChoice >= 1 && statusChoice <= 5) { //brzydko!!
+			 if (statusChoice >= 1 && statusChoice <= 5) { 
 
 				 complaintToChange->setStatus(statusChoice);
 

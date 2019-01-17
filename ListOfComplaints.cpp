@@ -2,20 +2,15 @@
 #include "ListOfComplaints.h"
 #include <iostream>
 
-//TODO:
-//dodaæ wypisywanie wszystkich reklamacji, które nie zosta³y jeszcze rozpatrzone
-//przy starcie programu przypominaæ, ¿e siê koñczy czas na rozpatrzenie jakiejœ reklamacji
-//dodaæ metodê zwracaj¹c¹ iloœæ reklamacji oczekuj¹cych na rozpatrzenie w systemie i ew. zwi¹zane z tym pole statyczne
-
 ListOfComplaints::ListOfComplaints() :
 
 	head(nullptr),
 	top(nullptr) {
 }
 
-ListOfComplaints::ListOfComplaints(Complaint complaint_) {
+ListOfComplaints::ListOfComplaints(const Complaint &complaint) {
 
-	Complaint* firstElement = new Complaint(complaint_);
+	Complaint* firstElement = new Complaint(complaint);
 
 	this->head = firstElement;
 	this->top = firstElement;
@@ -24,6 +19,34 @@ ListOfComplaints::ListOfComplaints(Complaint complaint_) {
 Complaint* ListOfComplaints::getHead() const {
 	
 	return this->head;
+}
+
+bool ListOfComplaints::operator+(const Complaint &complaintToAdd) {
+
+	if (this->findComplaint(complaintToAdd.getComplaintTitle()) != nullptr) {
+
+		std::cout << "\nReklamacja o podanym tytule juz istnieje!\n\n";
+
+		return false;
+	}
+
+	Complaint* toAdd = new Complaint(complaintToAdd);
+
+	if (this->head == nullptr) {
+
+		this->head = toAdd;
+		this->top = this->head;
+
+		return true;
+	}
+
+	Complaint* current = this->top;
+
+	current->setNext(toAdd);
+	toAdd->setPrev(current);
+	this->top = toAdd;
+
+	return true;
 }
 
 bool ListOfComplaints::operator-(const Complaint* complaintToDelete) { 
@@ -74,34 +97,6 @@ bool ListOfComplaints::operator-(const Complaint* complaintToDelete) {
 	return true;
 }
 
-bool ListOfComplaints::operator+(Complaint &complaintToAdd) {
-
-	if (this->findComplaint(complaintToAdd.getComplaintTitle()) != nullptr) {
-
-		std::cout << "\nReklamacja o podanym tytule juz istnieje!\n\n";
-
-		return false;
-	}
-
-	Complaint* toAdd = new Complaint(complaintToAdd);
-
-	if (this->head == nullptr) {
-
-		this->head = toAdd;
-		this->top = this->head;
-
-		return true;
-	}
-
-	Complaint* current = this->top;
-
-	current->setNext(toAdd);
-	toAdd->setPrev(current);
-	this->top = toAdd;
-
-	return true;
-}
-
 Complaint* ListOfComplaints::findComplaint(const std::string &complaintToFind) const {
 
 	Complaint* current = head;
@@ -116,13 +111,7 @@ Complaint* ListOfComplaints::findComplaint(const std::string &complaintToFind) c
 		return nullptr;		
 	}
 	
-
 	return current;
-}
-
-void ListOfComplaints::sortComplaintsBy(const int &sortByChoice) const { //usunac
-
-	std::cout << "Funkcjonalnosc w trakcie budowy\n\n";
 }
 
 void ListOfComplaints::printComplaints() const {
@@ -132,8 +121,6 @@ void ListOfComplaints::printComplaints() const {
 	if(current == nullptr) {
 
 		std::cout << "Lista reklamacji jest pusta!\n";
-		
-
 	}
 
 	while (current != nullptr) { 
@@ -175,9 +162,13 @@ void ListOfComplaints::printEmployeesComplaints(const std::string &employeesPese
 	Complaint* current = this->head;
 	bool anyComplaint = false;
 
+	Employee employeesData;
+
 	while(current != nullptr) {
 		
-		if(current->employeesData.getPesel() == employeesPesel) {
+		employeesData = current->getEmployeesData();
+
+		if(employeesData.getPesel() == employeesPesel) {
 			
 			std::cout << *current << "\n\n";
 			std::cout << "__________________________________________________\n\n";
@@ -236,7 +227,6 @@ void ListOfComplaints::operator!() const {
 		std::cout << "Aktualnie termin rozpatrzenia zadnej z reklamacji sie nie zbliza.\n\n";
 	}
 
-
 }
 
 ListOfComplaints::~ListOfComplaints() {
@@ -252,5 +242,6 @@ ListOfComplaints::~ListOfComplaints() {
 		toDelete = head;
 	}
 
-
+	this->head = nullptr;
+	this->top = nullptr;
 }

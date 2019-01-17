@@ -6,17 +6,14 @@
 #include <iostream>
 #include <ctime>
 
-
-//#include <boost/date_time/posix_time/posix_time.hpp>
-
 Complaint::Complaint() : 
 	
 	complaintTitle(""), 
-    complaintedItem(""), 
-	customersData(), 
-	employeesData(), 
+    complaintedItem(""),  
 	dateOfComplaint(""), 
 	status(""),
+	customersData(),
+	employeesData(),
 	next(nullptr),
 	prev(nullptr) {
 }
@@ -25,10 +22,10 @@ Complaint::Complaint(const Complaint &complaint) :
 
 	complaintTitle(complaint.complaintTitle),
 	complaintedItem(complaint.complaintedItem),
-	customersData(complaint.customersData),
-	employeesData(complaint.employeesData),
 	dateOfComplaint(complaint.dateOfComplaint),
 	status(complaint.status),
+	customersData(complaint.customersData),
+	employeesData(complaint.employeesData),
 	next(nullptr),
 	prev(nullptr) {
 }
@@ -114,6 +111,16 @@ void Complaint::setEmployeesData(const Employee &employeesData) {
 	this->employeesData = employeesData;
 }
 
+void Complaint::setNext(Complaint* nextToSet) {
+
+	this->next = nextToSet;
+}
+
+void Complaint::setPrev(Complaint* prevToSet) {
+
+	this->prev = prevToSet;
+}
+
 std::string Complaint::getComplaintTitle() const {
 
 	return this->complaintTitle;
@@ -128,7 +135,42 @@ std::string Complaint::getDateOfComplaint() const {
 
 	return this->dateOfComplaint;
 }
-//zwracanie czasu oczekiwania w systemie te¿?
+
+std::string Complaint::getStatus() const {
+
+	return this->status;
+}
+
+Customer Complaint::getCustomersData() const {
+
+	return this->customersData;
+}
+
+Employee Complaint::getEmployeesData() const {
+	
+	return this->employeesData;
+}
+
+Complaint* Complaint::getNext() const {
+
+	if (this == nullptr) {
+
+		return nullptr;
+	}
+
+	return this->next;
+}
+
+Complaint* Complaint::getPrev() const {
+
+	if (this == nullptr) {
+
+		return nullptr;
+	}
+
+	return this->prev;
+}
+
 bool Complaint::checkIfNeedsToBeExamined(int &durationInDays) const { //je¿eli dana reklamacja w przybli¿eniu oczekuje na rozpatrzenie d³u¿ej ni¿ 14 dni to zwracane true
 
 	std::time_t now = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
@@ -145,7 +187,6 @@ bool Complaint::checkIfNeedsToBeExamined(int &durationInDays) const { //je¿eli d
 	int month = stoi(this->dateOfComplaint.substr(5, 2));
 	int year = stoi(this->dateOfComplaint.substr(0, 4));
 
-
 	if(yearNow == year) {
 
 		durationInDays = dayNow - day + (monthNow - month) * 30;
@@ -154,8 +195,7 @@ bool Complaint::checkIfNeedsToBeExamined(int &durationInDays) const { //je¿eli d
 
 		durationInDays = (yearNow - year - 1) * 365 + (dayNow - day) + (monthNow - month + 12) * 30;
 
-	}
-	
+	}	
 
 	if(durationInDays >= almostDeadline) {
 
@@ -166,44 +206,7 @@ bool Complaint::checkIfNeedsToBeExamined(int &durationInDays) const { //je¿eli d
 	
 }
 
-std::string Complaint::getStatus() const {
-
-	return this->status;
-}
-
-Complaint* Complaint::getNext() const {
-
-	if (this == nullptr) {
-
-		return /*this*/ nullptr;
-	}
-	return this->next;
-}
-
-Complaint* Complaint::getPrev() const {
-
-	if (this == nullptr) {
-
-		return /*this*/ nullptr;
-	}
-
-	return this->prev;
-}
-
-void Complaint::setNext(Complaint* nextToSet) {
-
-	this->next = nextToSet;
-}
-
-void Complaint::setPrev(Complaint* prevToSet) {
-
-	this->prev = prevToSet;
-}
-
-Complaint::~Complaint() { 
-}
-
-std::istream& operator>>(std::istream &input, Complaint &toFill) { //czyszczenie wejœcia a¿ do \n
+std::istream& operator>>(std::istream &input, Complaint &toFill) { 
 
 	Validators* titleValidator = new ComplaintTitle; 
 	Validators* itemValidator = new ComplaintedItem;
@@ -226,8 +229,7 @@ std::istream& operator>>(std::istream &input, Complaint &toFill) { //czyszczenie
 		}
 
 	} while (validated == false);
-
-
+	
 	do {
 
 		std::cout << "Podaj nazwe reklamowanego towaru: ";
@@ -256,12 +258,12 @@ std::istream& operator>>(std::istream &input, Complaint &toFill) { //czyszczenie
 std::ostream& operator<<(std::ostream &output, const Complaint &toPrint) {
 
 
-	std::cout << "Tytul reklamacji: " << toPrint.complaintTitle << "\n";
-	std::cout << "Reklamowany towar: " << toPrint.complaintedItem << "\n";
-	std::cout << "Data przyjecia reklamacji: " << toPrint.dateOfComplaint << "\n";
-	std::cout << "Status reklamacji: " << toPrint.status << "\n";
-	std::cout << toPrint.customersData << "\n";
-	std::cout << toPrint.employeesData << "\n";
+	output << "Tytul reklamacji: " << toPrint.complaintTitle << "\n";
+	output << "Reklamowany towar: " << toPrint.complaintedItem << "\n";
+	output << "Data przyjecia reklamacji: " << toPrint.dateOfComplaint << "\n";
+	output << "Status reklamacji: " << toPrint.status << "\n";
+	output << toPrint.customersData << "\n";
+	output << toPrint.employeesData << "\n";
 	
 
 	return output;	

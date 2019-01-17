@@ -1,9 +1,7 @@
 #pragma once
 
 #include <string>
-#include <iostream>
 #include "ListOfComplaints.h"
-#include "DataGuard.h"
 
 
 class ListOfComplaints;

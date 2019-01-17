@@ -9,7 +9,8 @@
 #include "DataGuard.h"
 
 
-filesSupport::filesSupport(const std::string& inFileName, const std::string& outFileName) :
+filesSupport::filesSupport(const std::string &inFileName, const std::string &outFileName) :
+    
     inFileName(inFileName),
     outFileName(outFileName) {
 }
@@ -17,6 +18,8 @@ filesSupport::filesSupport(const std::string& inFileName, const std::string& out
 bool filesSupport::saveToFile(ListOfComplaints &list) const {
 	
 	Complaint* current = list.getHead();
+	Customer customersData;
+	Employee employeesData;
 
 	std::ofstream outFile;
 	
@@ -29,29 +32,30 @@ bool filesSupport::saveToFile(ListOfComplaints &list) const {
 		return false;
 	}
 
-	while(current != nullptr) {
+	while(current != nullptr) { 
 
 		outFile << current->getComplaintTitle() << "\n";
 		outFile << current->getComplaintedItem() << "\n";
 		outFile << current->getDateOfComplaint() << "\n";
 		outFile << current->getStatus() << "\n";
 
-		outFile << current->customersData.getName() << "\n";
-		outFile << current->customersData.getSurname() << "\n";
-		outFile << DataGuard::encryptData(current->customersData.getAdress()) << "\n";
-		outFile << DataGuard::encryptData(current->customersData.getPhoneNumber()) << "\n";
-		outFile << DataGuard::encryptData(current->customersData.getPesel()) << "\n";
+		customersData = current->getCustomersData();
 
-		outFile << current->employeesData.getName() << "\n";
-		outFile << current->employeesData.getSurname() << "\n";
-		outFile << DataGuard::encryptData(current->employeesData.getPesel()) << "\n";
-		
+		outFile << customersData.getName() << "\n";
+		outFile << customersData.getSurname() << "\n";
+		outFile << DataGuard::encryptData(customersData.getAdress()) << "\n";
+		outFile << DataGuard::encryptData(customersData.getPhoneNumber()) << "\n";
+		outFile << DataGuard::encryptData(customersData.getPesel()) << "\n";
 
-		
+		employeesData = current->getEmployeesData();
+
+		outFile << employeesData.getName() << "\n";
+		outFile << employeesData.getSurname() << "\n";
+		outFile << DataGuard::encryptData(employeesData.getPesel()) << "\n";
+				
 		current = current->getNext();
 	}
-
-
+	
 	outFile.close();
 
 	return true;
@@ -61,8 +65,8 @@ bool filesSupport::saveToFile(ListOfComplaints &list) const {
 bool filesSupport::readFromFile(ListOfComplaints &list) const {
 	
 	Complaint complaint;
-	Customer customer;
-	Employee employee;
+	Customer customersData;
+	Employee employeesData;
 
 	std::string line = "";
 
@@ -77,7 +81,7 @@ bool filesSupport::readFromFile(ListOfComplaints &list) const {
 		return false;
 	}
 
-	while(std::getline(inFile, line)) {
+	while(std::getline(inFile, line)) { 
 
 		complaint.setComplaintTitle(line);
 
@@ -91,33 +95,33 @@ bool filesSupport::readFromFile(ListOfComplaints &list) const {
 		complaint.setStatus(line);
 
 		std::getline(inFile, line);
-		customer.setName(line);
+		customersData.setName(line);
 
 		std::getline(inFile, line);
-		customer.setSurname(line);
+		customersData.setSurname(line);
 
 		std::getline(inFile, line);
-		customer.setAdress(DataGuard::decryptData(line)); 
+		customersData.setAdress(DataGuard::decryptData(line)); 
 
 		std::getline(inFile, line);
-		customer.setPhoneNumber(DataGuard::decryptData(line));
+		customersData.setPhoneNumber(DataGuard::decryptData(line));
 
 		std::getline(inFile, line);
-		customer.setPesel(DataGuard::decryptData(line));
+		customersData.setPesel(DataGuard::decryptData(line));
 
 		std::getline(inFile, line);
-		employee.setName(line);
+		employeesData.setName(line);
 
 		std::getline(inFile, line);
-		employee.setSurname(line);
+		employeesData.setSurname(line);
 
 		std::getline(inFile, line);
-		employee.setPesel(DataGuard::decryptData(line));
+		employeesData.setPesel(DataGuard::decryptData(line));
 		
-		complaint.setCustomersData(customer);
-		complaint.setEmployeesData(employee);
+		complaint.setCustomersData(customersData);
+		complaint.setEmployeesData(employeesData);
 
-		list.addComplaint(complaint);
+		list+(complaint);
 
 	}
 

@@ -44,5 +44,3 @@ bool Pesel::validate(const std::string &toCheck) {
 
 	return std::regex_match(toCheck, pattern);
 }
-
-

@@ -13,8 +13,7 @@ std::string DataGuard::encryptData(const std::string &toEncrypt) {
 		if(encryptedASCII <= maxASCIIValue) {
 
 			encryptedData += encryptedASCII;
-		}
-		else {
+		} else {
 			
 			encryptedData += encryptedASCII % maxASCIIValue - 1; 		
 		}
@@ -28,6 +27,7 @@ std::string DataGuard::decryptData(const std::string &toDecrypt) {
 	
 
 	std::string decryptedData = "";
+
 	int decryptedASCII = 0;
 
 	for (int i = 0; i < toDecrypt.length(); ++i) {
@@ -40,8 +40,7 @@ std::string DataGuard::decryptData(const std::string &toDecrypt) {
 		} else {
 			
 			decryptedData += maxASCIIValue + decryptedASCII + 1;
-		}
-		 
+		}		 
 
 	}
 

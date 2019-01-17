@@ -1,21 +1,19 @@
 #pragma once
 
 #include "ListOfComplaints.h"
-#include <Windows.h>
 #include "filesSupport.h"
 
-const int invalidInput = 99;
-
 class Interface {
+
+	static const int invalidInput = 99;
 
 	enum choices {addComplaint = 1, searchComplaint, deleteComplaint, changeStatusOfComplaint, displayComplaints, displayComplaintsNearDeadline, displayUnexaminedComplaints, employeesComplaints, exit = 9};
 
 	static int choice;
 
-
 public:
+
 	Interface();
-	//~Interface();
 
 	static void printMenu(const ListOfComplaints &list);
     static void getUsersChoice(int& choice);

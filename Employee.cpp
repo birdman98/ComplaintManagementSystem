@@ -2,21 +2,7 @@
 #include "Employee.h"
 #include "Validators.h"
 
-
-Employee::Employee() :
-
-	name(""),
-	surname(""),
-    employeesID("") {
-}
-
-Employee::Employee(const std::string &name_, const std::string &surname_) :
-
-	name(name_),
-	surname(surname_) {
-
-	//this->employeesID = makeIDForUser();
-}
+#include <iostream>
 
 void Employee::setName(const std::string &name) {
 
@@ -33,11 +19,6 @@ void Employee::setPesel(const std::string &pesel) {
 	this->pesel = pesel;
 }
 
-void Employee::setID(const std::string &id) {
-
-	this->employeesID = id;
-}
-
 std::string Employee::getName() const {
 
 	return this->name;
@@ -51,11 +32,6 @@ std::string Employee::getSurname() const {
 std::string Employee::getPesel() const {
 	
 	return this->pesel;
-}
-
-std::string Employee::getID() const {
-	
-	return this->employeesID;
 }
 
 std::istream& operator>>(std::istream &input, Employee &toFill) {
@@ -119,19 +95,15 @@ std::istream& operator>>(std::istream &input, Employee &toFill) {
 	return input;
 }
 
-std::ostream& operator<<(std::ostream &output, const Employee &toPrint) { //RODO, wiec wyswietlanie tylko po ID + pesel?
+std::ostream& operator<<(std::ostream &output, const Employee &toPrint) { 
 
-	std::cout << "\nDane osoby obslugujacej reklamacje: \n\n";
+	output << "\nDane osoby obslugujacej reklamacje: \n\n";
 
-	std::cout << "Imie: ";
-	output << toPrint.name;
+	output << "Imie: " << toPrint.name;
 
-	std::cout << "\nNazwisko: ";
-	output << toPrint.surname;
+	output << "\nNazwisko: " << toPrint.surname;
 
-	std::cout << "\nPesel: "; //jeszcze ID
-    output << toPrint.pesel;
-
+	output << "\nPesel: " << toPrint.pesel;
 
 	return output;
 }
