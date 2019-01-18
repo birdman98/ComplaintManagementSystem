@@ -18,6 +18,7 @@ Default file both for input and output is **config.txt**
 ## Built with
    * **C++** - programming language
    * **Visual Studio 17** - IDE
+   * **Visual Leak Detector** - [vld-2.5.1](https://github.com/KindDragon/vld/releases/tag/v2.5.1)
    
  ## Author 
  
