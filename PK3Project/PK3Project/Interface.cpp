@@ -267,6 +267,8 @@ void Interface::getUsersChoice(int& choice) {
 
 		 std::cout << "\n\n";
 
+		 delete peselValidator;
+
 		 system("pause");
 
 		 break;
