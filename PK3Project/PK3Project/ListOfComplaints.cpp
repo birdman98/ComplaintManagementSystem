@@ -194,7 +194,7 @@ int ListOfComplaints::complaintsNearDeadlineCount() const {
 
 	while (current != nullptr) {
 
-		if (current->checkIfNeedsToBeExamined(duration)) {
+		if (current->checkIfNeedsToBeExamined(duration) && (current->getStatus() == "przyjeta" || current->getStatus() == "w toku")) {
 
 			++nearDeadlineCount;			
 		}
@@ -229,7 +229,7 @@ void ListOfComplaints::operator!() const {
 
 	while (current != nullptr) {
 
-		if (current->checkIfNeedsToBeExamined(duration)) {
+		if (current->checkIfNeedsToBeExamined(duration) && (current->getStatus() == "przyjeta" || current->getStatus() == "w toku")) {
 
 			std::cout << *current;
 			std::cout << "\n\nDni, ktore minely od zlozenia reklamacji w (przyblizeniu): " << duration << "\n\n";
