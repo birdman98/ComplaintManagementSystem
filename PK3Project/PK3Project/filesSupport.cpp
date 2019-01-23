@@ -121,7 +121,7 @@ bool filesSupport::readFromFile(ListOfComplaints &list) const {
 		complaint.setCustomersData(customersData);
 		complaint.setEmployeesData(employeesData);
 
-		list+(complaint);
+		list += complaint;
 
 	}
 
