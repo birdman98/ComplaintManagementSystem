@@ -21,7 +21,7 @@ Complaint* ListOfComplaints::getHead() const {
 	return this->head;
 }
 
-bool ListOfComplaints::operator+(const Complaint &complaintToAdd) {
+bool ListOfComplaints::operator+=(const Complaint &complaintToAdd) {
 
 	if (this->findComplaint(complaintToAdd.getComplaintTitle()) != nullptr) {
 
@@ -49,7 +49,7 @@ bool ListOfComplaints::operator+(const Complaint &complaintToAdd) {
 	return true;
 }
 
-bool ListOfComplaints::operator-(const Complaint* complaintToDelete) { 
+bool ListOfComplaints::operator-=(const Complaint* complaintToDelete) { 
 
 	Complaint* prev = nullptr;
 	Complaint* next = nullptr;
