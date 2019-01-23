@@ -14,8 +14,8 @@ public:
 
 	Complaint* getHead() const;
 
-	bool operator+ (const Complaint &complaintToAdd); //dodaje reklamacje do listy 
-	bool operator-(const Complaint* complaintToDelete); //usuwa reklamacje z listy
+	bool operator+= (const Complaint &complaintToAdd); //dodaje reklamacje do listy 
+	bool operator-=(const Complaint* complaintToDelete); //usuwa reklamacje z listy
 	
 	Complaint* findComplaint(const std::string &complaintToFind) const;
 	void printComplaints() const;
