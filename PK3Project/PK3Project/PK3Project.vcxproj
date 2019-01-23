@@ -135,6 +135,7 @@
     <ClInclude Include="Employee.h" />
     <ClInclude Include="filesSupport.h" />
     <ClInclude Include="Interface.h" />
+    <ClInclude Include="ListOfComplaints.h" />
     <ClInclude Include="Validators.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
