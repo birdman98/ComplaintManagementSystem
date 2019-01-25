@@ -179,13 +179,28 @@ bool Complaint::checkIfNeedsToBeExamined(int &durationInDays) const { //je¿eli d
 
 	std::strftime(&currentDateAndTime[0], currentDateAndTime.size(), "%Y-%m-%d %H:%M:%S", std::localtime(&now));
 
-	int dayNow = stoi(currentDateAndTime.substr(8, 2));
-	int monthNow = stoi(currentDateAndTime.substr(5, 2));
-	int yearNow = stoi(currentDateAndTime.substr(0, 4));
-	
-	int day = stoi(this->dateOfComplaint.substr(8, 2));
-	int month = stoi(this->dateOfComplaint.substr(5, 2));
-	int year = stoi(this->dateOfComplaint.substr(0, 4));
+	int dayNow = 0;
+	int monthNow = 0;
+	int yearNow = 0;
+
+	int day = 0;
+	int month = 0;
+	int year = 0;
+
+	try {
+
+		dayNow = stoi(currentDateAndTime.substr(8, 2));
+		monthNow = stoi(currentDateAndTime.substr(5, 2));
+		yearNow = stoi(currentDateAndTime.substr(0, 4));
+
+		day = stoi(this->dateOfComplaint.substr(8, 2));
+		month = stoi(this->dateOfComplaint.substr(5, 2));
+		year = stoi(this->dateOfComplaint.substr(0, 4));
+
+	} catch(std::out_of_range exception) {
+		
+		return false;
+	}
 
 	if(yearNow == year) {
 
