@@ -10,7 +10,7 @@ std::string DataGuard::encryptData(const std::string &toEncrypt) {
 		
 		encryptedASCII = toEncrypt[i] + encryptionKey;
 
-		if(encryptedASCII <= maxASCIIValue) {
+		if(encryptedASCII <= maxASCIIValue) { //zawijanie, gdyby przekroczono zakres ASCII
 
 			encryptedData += encryptedASCII;
 		} else {
@@ -34,7 +34,7 @@ std::string DataGuard::decryptData(const std::string &toDecrypt) {
 
 		decryptedASCII = toDecrypt[i] - encryptionKey;
 
-		if(decryptedASCII >= minASCIIValue) {
+		if(decryptedASCII >= minASCIIValue) { //zawijanie, gdyby wynikowy kod był mniejszy niż 0
 			
 			decryptedData += decryptedASCII;
 		} else {

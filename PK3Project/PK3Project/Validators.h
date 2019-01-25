@@ -6,7 +6,7 @@ class Validators {
 public:
 
 	virtual bool validate(const std::string &toCheck) = 0;
-	virtual ~Validators() = default;
+	virtual ~Validators() = default; //wirtualny destruktor, ¿eby wywo³a³y siê destruktory klas potomnych
 };
 
 class ComplaintTitle : public Validators {

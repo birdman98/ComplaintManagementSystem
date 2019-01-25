@@ -187,7 +187,7 @@ bool Complaint::checkIfNeedsToBeExamined(int &durationInDays) const { //je¿eli d
 	int month = 0;
 	int year = 0;
 
-	try {
+	try { //na wypadek gdyby pole daty by³o puste 
 
 		dayNow = stoi(currentDateAndTime.substr(8, 2));
 		monthNow = stoi(currentDateAndTime.substr(5, 2));

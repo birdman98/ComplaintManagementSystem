@@ -67,7 +67,7 @@ void Interface::getUsersChoice(int& choice) {
 			choice = invalidInput;
 	    }			
 
-	std::cin.ignore((std::numeric_limits<std::streamsize>::max)(), '\n');
+	std::cin.ignore((std::numeric_limits<std::streamsize>::max)(), '\n'); //czyszczenie wejœcia a¿ do \n
 }
 
  bool Interface::menu(ListOfComplaints &list, filesSupport &file) {

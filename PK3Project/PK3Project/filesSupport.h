@@ -3,11 +3,7 @@
 #include <string>
 #include "ListOfComplaints.h"
 
-
-class ListOfComplaints;
-
-class filesSupport
-{
+class filesSupport {
 
 	const std::string inFileName;
 	const std::string outFileName;
