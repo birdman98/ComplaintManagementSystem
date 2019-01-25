@@ -19,6 +19,8 @@ public:
 	bool saveToFile(ListOfComplaints &list) const;
 	bool readFromFile(ListOfComplaints &list) const;
 
+	friend std::ofstream& operator<<(std::ofstream &outFile, const Complaint* current); 
+	friend std::ifstream& operator>>(std::ifstream &inFile, Complaint &complaint);
 
 };
 
