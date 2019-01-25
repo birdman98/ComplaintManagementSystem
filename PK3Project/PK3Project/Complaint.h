@@ -7,6 +7,8 @@
 #include <ostream>
 #include <istream>
 
+#define _CRT_SECURE_NO_WARNINGS //kompilator VS wymaga do funkcji std::strftime()
+
 const int almostDeadline = 14;
 
 class Complaint {
